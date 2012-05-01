@@ -10,6 +10,7 @@ Generate thumbnail pictures for video resources. All the resources will be acces
 * RESTful APIs get the duration of the audio or video resources
 * A call back through RESTful API to send the URL of the thumbnail pictures to another server
 * A call back through RESTful API to send the duration time to another server
+* And other secret functions :=)
 
 Other applications used in this service
 ----------
