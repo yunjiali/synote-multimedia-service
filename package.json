@@ -1,0 +1,24 @@
+{
+  "name": "synote-multimedia-service",
+  "version": "0.1",
+  "description":"Providing many multimedia services for Synote",
+  "dependencies": {
+    "fluent-ffmpeg": ">=1.0.0"
+  },
+  "author": {
+    "name": "Yunjia Li",
+    "email": "yl2@ecs.soton.ac.uk"
+  },
+  "bugs": {
+    "email": "yl2@ecs.soton.ac.uk",
+    "url": "https://github.com/yunjiali/synote-multimedia-service/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yunjiali/synote-multimedia-service.git"
+  },
+  "engines": {
+    "node": ">=0.6.16"
+  },
+  "main": "synote-multimedia-service.js",
+}

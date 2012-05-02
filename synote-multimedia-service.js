@@ -6,8 +6,9 @@ var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;
 
 console.log("taking pictures ffmpeg");
-var proc = new ffmpeg({ source: 'http://synote.org/resource/algore/01/algore.wmv' })
-  .withSize('150x100')
+
+var proc = new ffmpeg({ source: 'http://synote.org/resource/algore/01/algore.wmv'})
+  .withSize('120x90')
   .takeScreenshots({
       count: 1,
       timemarks: [ '20' ]
@@ -22,14 +23,18 @@ var vlcPath = '/Applications/VLC.app/Contents/MacOS/VLC';
 console.log("taking pictures vlc");
 
 var vlc = spawn(vlcPath, [
-    'http://youtu.be/rsODnEnbtm4',
-    '--rate=1',
+    'http://www.youtube.com/watch?v=1dCCosrmAtc',
+    ,'-I rc',
+    '--video-filter=scene',
+    '--scene-replace',
+    '--scene-height=90',
+    '--scene-width=120',
     '--vout=dummy',
-    '--start-time=10',
-    '--stop-time=11',
-    '--scene-format=png',
+    '--start-time=11', //variable of start and end time
+    '--stop-time=12',
     '--scene-ratio=24',
-    '--scene-prefix=snap',
+    '--scene-format=png',
+    '--scene-prefix=img', //variable of name
     '--scene-path=thumbnail',
     'vlc://quit'
   ]);
