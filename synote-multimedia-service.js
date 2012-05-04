@@ -1,57 +1,36 @@
-var http = require('http');
+/*load modules*/
+var Common = require('./lib/common.js');
+var log = Common.log,
+	restify = Common.restify,
+	config = Common.config,
+	server = Common.server,
+	node_static = Common.node_static;
 
-var ffmpeg = require('fluent-ffmpeg');
-var ffmpegmeta = require('fluent-ffmpeg').Metadata;
-var exec = require('child_process').exec;
-var spawn = require('child_process').spawn;
+/* Init services
+ * We use nameService for the instance of each service 
+ */
+log.info("Init services");
+//var ffmpegService = require('./services/ffmpeg-service.js'),
+//	vlcService = require('./services/vlc-service.js'),
+//	thumbnailService = require('./services/thumbnail-service.js'),
+var	api = require('./services/api.js');
 
-console.log("taking pictures ffmpeg");
+/*start the restify server and node-static*/
+log.info("Start server...");
+var file = new(node_static.Server)(config.node_static.root, {
+	cache: Common.config.node_static.cache,
+});
 
-var proc = new ffmpeg({ source: 'http://synote.org/resource/algore/01/algore.wmv'})
-  .withSize('120x90')
-  .takeScreenshots({
-      count: 1,
-      timemarks: [ '20' ]
-    }, 'thumbnail', function(err) {
-    console.log('screenshots were saved');
-  });
+/*start apis*/
+log.info("Init apis...");
+api.init();
+
+/*serve static files, we need to put it as the last one*/
+server.get(/^\/.*/, function(req, res, next) {
+	  file.serve(req, res, next);
+});
+server.listen(config.http.port, config.http.hostname, function() {
+	log.info('%s listening at %s', server.name, server.url);
+});
 
 
-var vlcPath = '/Applications/VLC.app/Contents/MacOS/VLC';
-
-
-console.log("taking pictures vlc");
-
-var vlc = spawn(vlcPath, [
-    'http://www.youtube.com/watch?v=1dCCosrmAtc',
-    ,'-I rc',
-    '--video-filter=scene',
-    '--scene-replace',
-    '--scene-height=90',
-    '--scene-width=120',
-    '--vout=dummy',
-    '--start-time=11', //variable of start and end time
-    '--stop-time=12',
-    '--scene-ratio=24',
-    '--scene-format=png',
-    '--scene-prefix=img', //variable of name
-    '--scene-path=thumbnail',
-    'vlc://quit'
-  ]);
-
-vlc.on('exit', function() {
-    console.log('vlc exit');
-  });
-
-/*There are durationraw attribute in the result json, so we can use it*/
-//ffmpegmeta.get('http://synote.org/resource/algore/01/algore.wmv', function(metadata) {
-//console.log(require('util').inspect(metadata, false, null));
-//});
-
-/*
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
-}).listen(1337, '127.0.0.1');
-console.log('Server running at http://127.0.0.1:1337/');
-*/

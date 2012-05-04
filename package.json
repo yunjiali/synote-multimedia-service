@@ -3,7 +3,11 @@
   "version": "0.1",
   "description":"Providing many multimedia services for Synote",
   "dependencies": {
-    "fluent-ffmpeg": ">=1.0.0"
+    "fluent-ffmpeg": ">=1.0.0",
+    "node-static":">=0.5.9",
+    "restify":">="1.4.1",
+    "config":">=0.4.13",
+    "bunyan":">=0.7.0"
   },
   "author": {
     "name": "Yunjia Li",
