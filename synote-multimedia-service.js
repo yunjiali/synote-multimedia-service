@@ -26,9 +26,14 @@ log.info("Init apis...");
 api.init();
 
 /*serve static files, we need to put it as the last one*/
-server.get(/^\/.*/, function(req, res, next) {
-	  file.serve(req, res, next);
+server.get(/^\/thumbnail\/.*/, function(req, res, next) {
+	file.serve(req, res, next);
 });
+
+server.get(/^\/.*/, function(req, res, next) {
+	file.serve(req, res, next);
+});
+
 server.listen(config.http.port, config.http.hostname, function() {
 	log.info('%s listening at %s', server.name, server.url);
 });

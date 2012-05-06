@@ -8,10 +8,13 @@ var log = Common.log,
 	restify = Common.restify,
 	config = Common.config,
 	server = Common.server,
-	node_static = Common.node_static;
+	node_static = Common.node_static,
+	utils = Common.utils;
+	
+var http = require('http');
 
-var utils = require("../lib/utils.js");
 var ffmpegService = require('../services/ffmpeg-service.js');
+var youtubeService = require('../services/youtube-service.js');
 
 
 /* params:
@@ -21,6 +24,8 @@ exports.init = function()
 {
 	server.use(restify.queryParser());
 	server.get('/api/generateThumbnail', generateThumbnail);
+	server.get('/api/getMetadata',getMetadata);
+	//server.get('/api/getDuration',getDuration);
 	//server.head('/api/:name', respond);
 }
 /*
@@ -29,8 +34,8 @@ exports.init = function()
  * 
  */
 function generateThumbnail(req, res, next) {
-	console.log(req.query.id);
-	console.log(req.query.videourl);
+	log.debug(req.query.id);
+	log.debug(req.query.videourl);
 	var id = req.params.id;
 	var videourlEncoded = req.query.videourl;
 	
@@ -47,10 +52,11 @@ function generateThumbnail(req, res, next) {
 	
 	//get the thumbnail picture position
 	var time;
-	//TODO:Get the duration and set it a random position within the duration
+	
 	if(req.query.start === undefined && req.query.end === undefined)
 	{
-		time = 0;
+		time = -1;
+		//TODO: if it's youtube video, directly read the thumbnail using youtube-dl
 	}
 	else
 	{
@@ -82,25 +88,67 @@ function generateThumbnail(req, res, next) {
 		time = parseInt((start+end)/2);
 	}
 	
-	//for different youtube video, we need to use vlc 
+	//for different youtube video, we need to use vlc
 	if(utils.isYouTubeURL(videourl, true))
 	{
+		var thumbnail_file = youtubeService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+			
+			if(err != null)
+				return next(err);
+			else
+				return res.send(server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file);		
+		});
 		
 	}
 	else
 	{
 		var thumbnail_file = ffmpegService.generateThumbnail(id,videourl,time);
-		res.send(server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file);
+		if(thumbnail_file !== undefined)
+			return res.send(server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file);
+		else
+			return next(new restify.InternalError("Cannot generate thumbnail pictures"));
+		
 	}
 }
 
 /*
- * generateThumbnail()
- * on receiving the request, return the url of the image immediately, then call ffmpeg or vlc to generate the thumbnail picture.
- * In node-static, if the image is not found,i.e. the image is still in generating or the image doesn't exist at all, we will return a default image.
- * 
+ * Get the metadata of the video or audio resource. The metadata we can get depends on the resource of the multimedia.
+ * For online multimedia files, we use ffmpeg, and for Youtube Videos, we use the youtube api
+ * params: videourl
  */
-
+function getMetadata(req,res,next)
+{
+	var videourlEncoded = req.query.videourl;
+	
+	if(videourlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("id or videourl is missing!"));
+	}
+	
+	var videourl = decodeURIComponent(videourlEncoded);
+	
+	if(utils.isValidURL(videourl))
+	{
+		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
+	}
+	
+	if(utils.isYouTubeURL(videourl, true))
+	{
+		youtubeService.getMetadata(videourl,function(err,metadata){
+			if(err !== undefined)
+				return next(err);
+			res.send(metadata);
+		});
+	}
+	else
+	{
+		ffmpegService.getMetadata(videourl,function(err,metadata){
+			if(err !== undefined)
+				return next(err);
+			res.send(metadata);
+		});
+	}
+}
 /*
  * s: start time
  * e: end time

@@ -17,11 +17,18 @@ var thumbnail_size = config.thumbnail.width+"x"+config.thumbnail.height;
  * 
  * According to the processor.js in ffmpeg, the generated thumbnail file will be at:
  * var target = Meta.escapedPath(folder + '/tn_' + offset + 's.jpg');
+ * 
+ * There is no callback function in this method, as the waiting for thumbnail generation may take a long time
  */
 exports.generateThumbnail = function(id,videourl,time){
 	//convert time to seconds
+	if(time === -1)
+	{
+		//TODO:Get the duration and set it a random position within the duration
+		time =0 ;
+	}
 	var t = (time-time%1000) / 1000;
-	var thumbnail_folder = thumbnail_root+'/'+id;
+	var thumbnail_folder = thumbnail_root+'/'+id; // no '/' here!
 	var thumbnail_file = 'tn_'+t+'s.jpg'; 
 	var proc = new ffmpeg({ source: videourl})
 		.withSize(thumbnail_size)
@@ -32,7 +39,7 @@ exports.generateThumbnail = function(id,videourl,time){
 	    	//if file is generated successfully, save it to database
 	    	
 	    	log.info('screenshots were saved as '+ thumbnail_file );
-	    	if(err !== undefined)
+	    	if(err != null)
 	    	{
 	    		console.log(err);
 	    	}
@@ -42,9 +49,17 @@ exports.generateThumbnail = function(id,videourl,time){
 };
 
 /*
- * Get the metadata of a multimedia resource, not only for video 
+ * Get the metadata of a multimedia resource, not only for video
+ * params: videourl, callback(the callback function)
  */
-exports.getMeta = function(){}
+exports.getMetadata = function(videourl, callback)
+{
+	ffmpegmeta.get(videourl, function(metadata) {
+		log.debug(require('util').inspect(metadata, false, null));
+		//TODO: how can I make sure ffmpeg cannot get the metadata?
+		callback(null,metadata);
+	});
+};
   
 exports.getDuration = function(){}
 
