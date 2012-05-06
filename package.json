@@ -1,6 +1,6 @@
 {
   "name": "synote-multimedia-service",
-  "version": "0.1",
+  "version": "0.1.5",
   "description":"Providing many multimedia services for Synote",
   "dependencies": {
     "fluent-ffmpeg": ">=1.0.0",
