@@ -6,10 +6,16 @@ by this service
 Generate thumbnail pictures for video resources. All the resources will be accessible through URL on the server.
 
 * RESTful APIs to generate thumbnail pictures from online multimedia resources, including video resources from Youtube
-* Host the thumbnail pictures on this server, or other Web server (apache for example)
+* Host the thumbnail pictures
+* RESTful APIs get the metadata of the audio or video resources 
 * RESTful APIs get the duration of the audio or video resources
-* A call back through RESTful API to send the URL of the thumbnail pictures to another server
-* A call back through RESTful API to send the duration time to another server
+* RESTful APIs to get if a resource is video or audio     
+
+Up coming features:
+
+* Get caption from youtube
+* Get technology description of the multimedia resources, such as framerate, bitrate, etc.
+* Automatic returning the title and description for YouTube video
 * And other secret functions :=)
 
 Other applications used in this service
@@ -42,10 +48,11 @@ Authors
 
 **E.A. Draffan (Project Manager)**
 
-+ ead@ecs.soton.ac.uk
++ http://www.ecs.soton.ac.uk/people/ead
 
 Copyright
 ---------------------
+This application is protected under Modified BSD License     
 
 Copyright 2012 University of Southampton.
 All rights reserved.

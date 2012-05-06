@@ -7,13 +7,30 @@ var http = require('http');
 
 var vlcService = require('../services/vlc-service.js');
 
+exports.getMetadata = getMetadata;
+
 exports.generateThumbnail = function(id,videourl,time,callback){
-	vlcService.generateThumbnail(id,videourl,time,function(err,file){
-		return callback(err,file)
-	});
+	if(time===-1)
+	{
+		getMetadata(videourl,function(err,metadata){
+			if(err != null)
+				return callback(err,null);
+			
+			if(metadata.entry[ "media$group" ][ "media$thumbnail" ][ 0 ].url === undefined)
+				return callback(new restify.RestError("Cannot get the default thumbnail picture from YouTube."),null);
+				
+			return callback(err,metadata.entry[ "media$group" ][ "media$thumbnail" ][ 0 ].url);
+		});
+	}
+	else
+	{
+		vlcService.generateThumbnail(id,videourl,time,function(err,file){
+			return callback(err,file)
+		});
+	}
 };
 
-exports.getMetadata = function(videourl, callback)
+function getMetadata(videourl, callback)
 {
 	var videoid = utils.getVideoIDFromYoutubeURL(videourl);
 	
@@ -40,7 +57,7 @@ exports.getMetadata = function(videourl, callback)
 		});
 
 		response.on('end', function(err){
-			//TODO: create your own exception for this occasion
+			//TODO: CustomiseException
 			if(err != null)
 				return callback(err,result);
 			
@@ -49,6 +66,21 @@ exports.getMetadata = function(videourl, callback)
 			return callback(err,obj);
 	  	});
 	});
-};
-  
-exports.getDuration = function(){}
+}
+
+/*
+ * Get the duration from youtube api
+ */
+exports.getDuration = function(videourl, callback){
+	getMetadata(videourl,function(err,metadata){
+		if(err != null)
+			return callback(err,null);
+		if(metadata.entry[ "media$group" ][ "yt$duration" ].seconds === undefined)
+			return callback(new restify.RestError("Cannot get the duration of the resource"),null);
+		var duration = parseInt(metadata.entry[ "media$group" ][ "yt$duration" ].seconds);
+		return callback(err,{duration:duration*1000});
+	})
+//data.entry[ "media$group" ][ "yt$duration" ].seconds	
+	
+	
+}

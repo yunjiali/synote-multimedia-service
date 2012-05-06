@@ -25,7 +25,8 @@ exports.init = function()
 	server.use(restify.queryParser());
 	server.get('/api/generateThumbnail', generateThumbnail);
 	server.get('/api/getMetadata',getMetadata);
-	//server.get('/api/getDuration',getDuration);
+	server.get('/api/getDuration',getDuration);
+	server.get('/api/isVideo',isVideo);
 	//server.head('/api/:name', respond);
 }
 /*
@@ -41,7 +42,7 @@ function generateThumbnail(req, res, next) {
 	
 	if(id === undefined || videourlEncoded === undefined)
 	{
-		return next(new restify.MissingParameterError("id or videourl is missing!"));
+		return next(new restify.MissingParameterError("videourl is missing!"));
 	}
 	
 	var videourl = decodeURIComponent(videourlEncoded);
@@ -91,22 +92,26 @@ function generateThumbnail(req, res, next) {
 	//for different youtube video, we need to use vlc
 	if(utils.isYouTubeURL(videourl, true))
 	{
-		var thumbnail_file = youtubeService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+		youtubeService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
 			
 			if(err != null)
 				return next(err);
+			else if(time === -1) //a picture from youtube
+				return res.send({thumbnail_url:thumbnail_file});
 			else
-				return res.send(server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file);		
+				return res.send({thumbnail_url:server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file});		
 		});
 		
 	}
 	else
 	{
-		var thumbnail_file = ffmpegService.generateThumbnail(id,videourl,time);
-		if(thumbnail_file !== undefined)
-			return res.send(server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file);
-		else
-			return next(new restify.InternalError("Cannot generate thumbnail pictures"));
+		ffmpegService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+			if(err != null)
+				return next(err);
+			else	
+				return res.send({thumbnail_url:server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file});		
+		});
+		
 		
 	}
 }
@@ -117,6 +122,44 @@ function generateThumbnail(req, res, next) {
  * params: videourl
  */
 function getMetadata(req,res,next)
+{
+	var videourlEncoded = req.query.videourl;
+	
+	if(videourlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("videourl is missing!"));
+	}
+	
+	var videourl = decodeURIComponent(videourlEncoded);
+	
+	if(utils.isValidURL(videourl))
+	{
+		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
+	}
+	
+	if(utils.isYouTubeURL(videourl, true))
+	{
+		youtubeService.getMetadata(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+	else
+	{
+		ffmpegService.getMetadata(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+}
+
+/*
+ * Get the duration of the audio or video resources given the videourl
+ * params: videourl
+ */
+function getDuration(req,res,next)
 {
 	var videourlEncoded = req.query.videourl;
 	
@@ -134,21 +177,54 @@ function getMetadata(req,res,next)
 	
 	if(utils.isYouTubeURL(videourl, true))
 	{
-		youtubeService.getMetadata(videourl,function(err,metadata){
-			if(err !== undefined)
+		youtubeService.getDuration(videourl,function(err,duration){
+			if(err != null)
 				return next(err);
-			res.send(metadata);
+			return res.send(duration);
 		});
 	}
 	else
 	{
-		ffmpegService.getMetadata(videourl,function(err,metadata){
-			if(err !== undefined)
+		ffmpegService.getDuration(videourl,function(err,duration){
+			if(err != null)
+			{
 				return next(err);
-			res.send(metadata);
+			}
+			return res.send(duration);
 		});
 	}
 }
+
+function isVideo(req,res,next)
+{
+	var videourlEncoded = req.query.videourl;
+	
+	if(videourlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("id or videourl is missing!"));
+	}
+	
+	var videourl = decodeURIComponent(videourlEncoded);
+	
+	if(utils.isValidURL(videourl))
+	{
+		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
+	}
+	
+	if(utils.isYouTubeURL(videourl, true))
+	{
+		return res.send({isVideo:true});
+	}
+	else
+	{
+		ffmpegService.isVideo(videourl,function(err,isVideo){
+			if(err!=null)
+				return next(err);
+			return res.send({isVideo:isVideo});
+		});
+	}
+}
+
 /*
  * s: start time
  * e: end time
