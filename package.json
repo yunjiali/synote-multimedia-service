@@ -5,7 +5,7 @@
   "dependencies": {
     "fluent-ffmpeg": ">=1.0.0",
     "node-static":">=0.5.9",
-    "restify":">="1.4.1",
+    "restify":">=1.4.1",
     "config":">=0.4.13",
     "bunyan":">=0.7.0",
     "mongojs":">=0.3.2"
@@ -25,5 +25,5 @@
   "engines": {
     "node": ">=0.6.16"
   },
-  "main": "synote-multimedia-service.js",
+  "main": "synote-multimedia-service.js"
 }
