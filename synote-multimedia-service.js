@@ -35,8 +35,6 @@ server.get(/^\/thumbnail\/.*/, function(req, res, next) {
 		{
 			return file.serveFile("default.jpg",err.status,{},req,res);
 		}
-		else
-			return next(result);
 	});
 });
 
