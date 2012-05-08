@@ -113,7 +113,7 @@ function getDuration(videourl,callback)
 /*
  * Not event-based function for getDuration
  */
-function getDurationFromJSON(metadata)
+function getDurationJSON(metadata)
 {
 	return parseInt(metadata.durationsec)*1000;
 }
