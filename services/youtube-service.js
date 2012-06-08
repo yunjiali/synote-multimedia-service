@@ -1,7 +1,8 @@
 var Common = require('../lib/common.js');
 var log = Common.log,
 	config = Common.config,
-	utils = Common.utils;
+	utils = Common.utils,
+	restify = Common.restify;
 
 var http = require('http');
 
@@ -50,6 +51,11 @@ function getMetadata(videourl, callback)
 			var err = new restify.InternalError("Response code 400: Cannot get metadata from YouTube video "+videoid);
 			return callback(err,result);
 		}
+		else if(response.statusCode === 403)
+		{
+			var err = new restify.InternalError("Response code 403: Cannot get metadata from a private YouTube video "+videoid);
+			return callback(err,result);
+		}
 		
 		response.on('data', function(chunk){
 			//console.log(chunk.toString());
@@ -60,10 +66,10 @@ function getMetadata(videourl, callback)
 			//TODO: CustomiseException
 			if(err != null)
 				return callback(err,result);
-			
+			log.debug(require('util').inspect(result, false, null));
 			var obj = JSON.parse(result);
 			log.debug(require('util').inspect(obj, false, null));
-			return callback(err,obj);
+			return callback(err,obj);	
 	  	});
 	});
 }
