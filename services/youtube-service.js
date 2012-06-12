@@ -51,9 +51,19 @@ function getMetadata(videourl, callback)
 			var err = new restify.InternalError("Response code 400: Cannot get metadata from YouTube video "+videoid);
 			return callback(err,result);
 		}
+		else if(response.statusCode === 401)
+		{
+			var err = new restify.InternalError("Response code 401: Authentication failed for YouTube video "+videoid);
+			return callback(err,result);
+		}
 		else if(response.statusCode === 403)
 		{
 			var err = new restify.InternalError("Response code 403: Cannot get metadata from a private YouTube video "+videoid);
+			return callback(err,result);
+		}
+		else if(response.statusCode === 404)
+		{
+			var err = new restify.InternalError("Response code 404: Cannot find YouTube video "+videoid);
 			return callback(err,result);
 		}
 		
