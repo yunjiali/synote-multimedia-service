@@ -84,7 +84,7 @@ function getMetadata(videourl, callback)
 	metaObj.get(function(metadata,err) {
 		log.debug(require('util').inspect(metadata, false, null));
 		//TODO: how can I make sure ffmpeg can get the metadata?
-		if(metadata.video.resolution.w === 0 && metadata.video.resolution.h === 0)
+		if((metadata.video.resolution.w === 0 && metadata.video.resolution.h === 0) || metadata.video.container == "mp3")
 			metadata.isVideo = false;
 		else
 			metadata.isVideo = true;
