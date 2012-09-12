@@ -5,7 +5,7 @@ var log = Common.log,
 	restify = Common.restify;
 
 var ffmpeg = require('fluent-ffmpeg');
-var ffmpegmeta = require('fluent-ffmpeg').Metadata;
+var Metalib = require('fluent-ffmpeg').Metadata;
 
 //the root directory of thumbnail on the disk 
 var thumbnail_root = config.node_static.root+config.thumbnail.root_dir;
@@ -80,7 +80,8 @@ function generateThumbnail(id,videourl,time,callback){
  */
 function getMetadata(videourl, callback)
 {
-	ffmpegmeta.get(videourl, function(metadata) {
+	var metaObj = new Metalib(videourl);
+	metaObj.get(function(metadata,err) {
 		log.debug(require('util').inspect(metadata, false, null));
 		//TODO: how can I make sure ffmpeg can get the metadata?
 		if(metadata.video.resolution.w === 0 && metadata.video.resolution.h === 0)
