@@ -53,7 +53,7 @@ function generateThumbnail(id,videourl,time,callback){
 		{
 			time = duration*0.9;
 		}
-		var t = (time-time%1000) / 1000;
+		var t = ""+(time-time%1000) / 1000;
 		var thumbnail_folder = thumbnail_root+'/'+id; // no '/' here!
 		var thumbnail_file = 'tn_'+t+'s.jpg'; 
 		var proc = new ffmpeg({ source: videourl})
@@ -61,8 +61,8 @@ function generateThumbnail(id,videourl,time,callback){
 			.takeScreenshots({
 		      count: 1,
 		      timemarks: [ t ]
-		    }, thumbnail_folder, function(err) {
-		    	
+		    }, thumbnail_folder, function(err,filenames) {
+		    	log.debug("filenames:"+filenames);
 		    	log.info('screenshots were saved as '+ thumbnail_file );
 		    	if(err != null)
 		    	{
