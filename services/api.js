@@ -15,7 +15,7 @@ var http = require('http');
 
 var ffmpegService = require('../services/ffmpeg-service.js');
 var youtubeService = require('../services/youtube-service.js');
-
+var dailymotionService = require ('../services/dailymotion-service.js');
 
 /* params:
  * server: the restify serve instance
@@ -103,6 +103,18 @@ function generateThumbnail(req, res, next) {
 		});
 		
 	}
+	else if(utils.isDailyMotionURL(videourl,true))
+	{
+		dailymotionService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+			
+			if(err != null)
+				return next(err);
+			else if(time === -1) //a picture from youtube
+				return res.send({thumbnail_url:thumbnail_file});
+			else
+				return res.send({thumbnail_url:server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file});		
+		});
+	}
 	else
 	{
 		ffmpegService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
@@ -140,6 +152,14 @@ function getMetadata(req,res,next)
 	if(utils.isYouTubeURL(videourl, true))
 	{
 		youtubeService.getMetadata(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+	else if(utils.isDailyMotionURL(videourl, true))
+	{
+		dailymotionService.getMetadata(videourl,function(err,metadata){
 			if(err != null)
 				return next(err);
 			return res.send(metadata);
@@ -183,6 +203,14 @@ function getDuration(req,res,next)
 			return res.send(duration);
 		});
 	}
+	if(utils.isDailyMotionURL(videourl, true))
+	{
+		dailymotionService.getDuration(videourl,function(err,duration){
+			if(err != null)
+				return next(err);
+			return res.send(duration);
+		});
+	}
 	else
 	{
 		ffmpegService.getDuration(videourl,function(err,duration){
@@ -211,7 +239,7 @@ function isVideo(req,res,next)
 		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
 	}
 	
-	if(utils.isYouTubeURL(videourl, true))
+	if(utils.isYouTubeURL(videourl, true) || utils.isDailyMotionURL(videourl,true))
 	{
 		return res.send({isVideo:true});
 	}
