@@ -77,9 +77,9 @@ function getMetadata(videourl, callback)
 			//TODO: CustomiseException
 			if(err != null)
 				return callback(err,result);
-			log.debug(require('util').inspect(result, false, null));
+			//log.debug(require('util').inspect(result, false, null));
 			var obj = JSON.parse(result);
-			log.debug(require('util').inspect(obj, false, null));
+			//log.debug(require('util').inspect(obj, false, null));
 			return callback(err,obj);	
 	  	});
 	});

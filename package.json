@@ -8,7 +8,8 @@
     "restify":">=1.4.1",
     "config":">=0.4.13",
     "bunyan":">=0.7.0",
-    "mongojs":">=0.3.2"
+    "mongojs":">=0.3.2",
+    "lazy":">=1.0.8"
   },
   "author": {
     "name": "Yunjia Li",
