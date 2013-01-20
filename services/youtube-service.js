@@ -97,6 +97,12 @@ exports.getDuration = function(videourl, callback){
 		return callback(err,{duration:duration*1000});
 	})
 //data.entry[ "media$group" ][ "yt$duration" ].seconds	
-	
-	
 }
+
+/*
+ * Get available subtitle list from YouTube
+ * callback(err,subtitleList)
+ */
+ exports.getSubtitleList = function(videourl,callback){
+ 	
+ }

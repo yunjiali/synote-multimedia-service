@@ -28,6 +28,7 @@ exports.init = function()
 	server.get('/api/getMetadata',getMetadata);
 	server.get('/api/getDuration',getDuration);
 	server.get('/api/isVideo',isVideo);
+	server.get('/api/getSubtitleList',getSubtitleList)
 	//server.head('/api/:name', respond);
 	
 	//for LIME13 experiment
@@ -253,6 +254,48 @@ function isVideo(req,res,next)
 			if(err!=null)
 				return next(err);
 			return res.send({isVideo:isVideo});
+		});
+	}
+}
+
+function getSubtitleList(req,res,next)
+{
+	var videourlEncoded = req.query.videourl;
+	
+	if(videourlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("videourl is missing!"));
+	}
+	
+	var videourl = decodeURIComponent(videourlEncoded);
+	
+	if(utils.isValidURL(videourl))
+	{
+		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
+	}
+	
+	if(utils.isYouTubeURL(videourl, true))
+	{
+		youtubeService.getSubtitleList(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+	else if(utils.isDailyMotionURL(videourl, true))
+	{
+		dailymotionService.getSubtitleList(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+	else
+	{
+		ffmpegService.getSubtitleList(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
 		});
 	}
 }

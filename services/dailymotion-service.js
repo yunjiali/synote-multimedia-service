@@ -98,6 +98,62 @@ exports.getDuration = function(videourl, callback){
 		return callback(err,{duration:duration*1000});
 	})
 //data.entry[ "media$group" ][ "yt$duration" ].seconds	
-	
-	
 }
+
+
+/*
+ * Get available subtitle list from dailymotion
+ * callback(err,subtitleList)
+ */
+ exports.getSubtitleList = function(videourl,callback){
+ 	var videoid = utils.getVideoIDFromDailyMotionURL(videourl);
+	
+	if(videoid === undefined)
+		return next(new restify.InvalidArgumentError("Cannot get the DailyMotion video id from videourl"));
+	var options = {
+			host:"api.dailymotion.com",
+	        path:"/video/"+videoid+"/subtitles?fields=language,url&limit=100"
+	}
+ 	https.get(options,function(response){
+	
+		var result = '';
+		log.debug("Requesting metadata for DailyMotion video "+videoid+". Response status:"+response.statusCode);
+		if(response.statusCode === 400)
+		{
+			var err = new restify.InternalError("Response code 400: Cannot get metadata from DailyMotion video "+videoid);
+			return callback(err,result);
+		}
+		else if(response.statusCode === 401)
+		{
+			var err = new restify.InternalError("Response code 401: Authentication failed for DailyMotion video "+videoid);
+			return callback(err,result);
+		}
+		else if(response.statusCode === 403)
+		{
+			var err = new restify.InternalError("Response code 403: Cannot get metadata from a private DailyMotion video "+videoid);
+			return callback(err,result);
+		}
+		else if(response.statusCode === 404)
+		{
+			var err = new restify.InternalError("Response code 404: Cannot find DailyMotion video "+videoid);
+			return callback(err,result);
+		}
+		
+		response.on('data', function(chunk){
+			//console.log(chunk.toString());
+			result += chunk;
+		});
+
+		response.on('end', function(err){
+			//TODO: CustomiseException
+			if(err != null)
+				return callback(err,result);
+			//log.debug(require('util').inspect(result, false, null));
+			var obj = JSON.parse(result);
+			var sl = {};
+			sl.total = obj.total;
+			sl.list = obj.list;
+			return callback(err,sl);	
+	  	});
+	});
+ }
