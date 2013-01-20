@@ -5,6 +5,7 @@ var log = Common.log,
 	restify = Common.restify;
 
 var http = require('http');
+var xml2js = require('xml2js');
 
 var vlcService = require('../services/vlc-service.js');
 
@@ -104,5 +105,69 @@ exports.getDuration = function(videourl, callback){
  * callback(err,subtitleList)
  */
  exports.getSubtitleList = function(videourl,callback){
- 	
+ 	var parser = new xml2js.Parser();
+ 	var videoid = utils.getVideoIDFromYoutubeURL(videourl);
+	
+	if(videoid === undefined)
+		return next(new restify.InvalidArgumentError("Cannot get the YouTube video id from videourl"));
+	var options = {
+			host:"www.youtube.com",
+	        path:"/api/timedtext?v="+videoid+"&type=list"
+	}
+	
+	http.get(options,function(response){
+		
+		var result = '';
+		log.debug("Requesting metadata for Youtube video "+videoid+". Response status:"+response.statusCode);
+		if(response.statusCode === 400)
+		{
+			var err = new restify.InternalError("Response code 400: Cannot get metadata from YouTube video "+videoid);
+			return callback(err,result);
+		}
+		else if(response.statusCode === 401)
+		{
+			var err = new restify.InternalError("Response code 401: Authentication failed for YouTube video "+videoid);
+			return callback(err,result);
+		}
+		else if(response.statusCode === 403)
+		{
+			var err = new restify.InternalError("Response code 403: Cannot get metadata from a private YouTube video "+videoid);
+			return callback(err,result);
+		}
+		else if(response.statusCode === 404)
+		{
+			var err = new restify.InternalError("Response code 404: Cannot find YouTube video "+videoid);
+			return callback(err,result);
+		}
+		
+		response.on('data', function(chunk){
+			//console.log(chunk.toString());
+			result += chunk;
+		});
+
+		response.on('end', function(err){
+			//TODO: CustomiseException
+			if(err != null)
+				return callback(err,result);
+
+			parser.parseString(result,function(err,xml){
+				//log.debug(xml);
+				var sl = {};
+				sl.list = new Array();
+				var track = xml.transcript_list.track
+				var total = track.length;
+				sl.total = total;
+				for(var i =0;i<total;i++)
+				{
+					var trackName = track[i].$.name;
+					var language = track[i].$.lang_code;
+					sl.list[i] = {};
+					sl.list[i].language = language;
+					sl.list[i].url = "http://www.youtube.com/api/timedtext?v="+videoid+"&fmt=srt&lang="+language+"&name="+trackName;
+				}
+				log.debug(require('util').inspect(sl, false, null));
+				return callback(err,sl);	
+			});	
+	  	});
+	});
  }
