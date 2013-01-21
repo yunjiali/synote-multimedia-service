@@ -91,14 +91,24 @@ function getMetadata(videourl, callback)
 			formalObj.metadata.category = null; //no category for dm
 			formalObj.metadata.duration = dmObj.duration;
 			formalObj.metadata.language = dmObj.language;
-			formalObj.metadata.creationDate = dmObj.created_time;
-			formalObj.metadata.publicationDate = dmObj.taken_time;
+			
+			if(metadataShort == false)
+				formalObj.metadata.creationDateMilliSeconds = dmObj.created_time*1000;
+			var cDate = new Date(dmObj.created_time*1000);
+			formalObj.metadata.creationDate = cDate.toString();
+			
+			if(metadataShort == false)
+				formalObj.metadata.publicationDateMilliSeconds = dmObj.taken_time*1000;
+			var pDate = new Date(dmObj.taken_time*1000)
+			formalObj.metadata.publicationDate = pDate.toString();
+			
 			if(metadataShort == false)
 				formalObj.metadata.isVideo = true;
 			if(metadataShort == false)
 				formalObj.metadata.thumbnail = dmObj.thumbnail_medium_url;
+			
 			formalObj.statistics = {};
-			formalObj.statistics.views = dmObj.view_total;
+			formalObj.statistics.views = dmObj.views_total;
 			formalObj.statistics.comments = dmObj.comments_total;
 			formalObj.statistics.favorites = dmObj.bookmarks_total;
 			formalObj.statistics.ratings = dmObj.ratings_total;
