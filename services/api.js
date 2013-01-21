@@ -32,7 +32,7 @@ exports.init = function()
 	//server.head('/api/:name', respond);
 	
 	//for LIME13 experiment
-	server.get('/api/lime13/generateAll', generateAll)
+	//server.get('/api/lime13/generateAll', generateAll)
 }
 /*
  * Generate thumbnail picture for a video
