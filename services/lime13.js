@@ -32,9 +32,9 @@ exports.generateAll = function(callback)
 	    		function(line) { 
 	          		//log.debug(line.toString());
 	              	//call dailymotion
-	              	dailymotionService.getMetadata("http://www.dailymotion.com/video/"+line, function(err,metadata){
+	              	dailymotionService.getMetadata("http://www.dailymotion.com/video/"+line, function(err,formalObj){
 	              		var filename = line+"_metadata.json";
-						fs.writeFile("tests/dailymotion/"+filename, metadata, function(err) {
+						fs.writeFile("tests/dailymotion/"+filename, JSON.stringify(formalObj,null,4), function(err) {
 						    if(err) {
 						        console.log(err);
 						    } else {

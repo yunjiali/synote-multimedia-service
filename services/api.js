@@ -137,6 +137,30 @@ function generateThumbnail(req, res, next) {
  * Get the metadata of the video or audio resource. The metadata we can get depends on the resource of the multimedia.
  * For online multimedia files, we use ffmpeg, and for Youtube Videos, we use the youtube api
  * params: videourl
+ * example metadata json:
+ * {
+	 "id": string,
+	 "metadata": {
+	   "title": string,
+	   "description": string,
+	   "tags": [
+	     string
+	   ]
+	   "channel": string,
+	   "category": string, (only yt)
+	   "duration": string,
+	   "language": string, (only dm)
+	   "creationDate": datetime,
+	   "publicationDate": datetime,
+	 },
+	 "statistics": {
+	   "views": unsigned long,
+	   "comments": unsigned long
+	   "favorites": unsigned long,
+	   "ratings": unsigned long,
+	 }
+   }
+ *
  */
 function getMetadata(req,res,next)
 {
