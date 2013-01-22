@@ -21,7 +21,7 @@
 /Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 28842811.ttl
 /Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 28881138.ttl
 /Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 28881441.ttl
-/Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" /Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 28921451.ttl
+/Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 28921451.ttl
 /Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 28953094.ttl
 /Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 29035670.ttl
 /Users/user/projects/jena-sdb-1.3.5/bin/sdbload --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" 29067213.ttl
