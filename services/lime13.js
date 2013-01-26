@@ -8,6 +8,8 @@ var fs = require('fs');
 var lazy=require("lazy");
 require('date-utils');
 
+var csvSeparator = "^^^^^^^^"
+
 var dailymotionService = require('../services/dailymotion-service.js');
 
 /*
@@ -29,9 +31,10 @@ exports.generateAll = function(callback)
 		callback(null);
 		//log.debug("lazy callback");
 		var csv = fs.createWriteStream('tests/dailymotion/metadata.csv', {'flags': 'a'});
-		var contentHeader = "id,title,tagsNo,channel,category,duration,language,creationDate,"+
-	             		"creationYear, creationMonth,creationDay,publicationDate, publicationYear, publicationMonth, publicationDay,"+
-	              		"views,comments,favorites,ratings\r\n";
+		var contentHeader = "id^^^^^^^^title^^^^^^^^description^^^^^^^^tags^^^^^^^^tagsNo^^^^^^^^channel^^^^^^^^category^^^^^^^^"+
+						"duration^^^^^^^^language^^^^^^^^creationDate^^^^^^^^"+
+	             		"creationYear^^^^^^^^creationMonth^^^^^^^^creationDay^^^^^^^^publicationDate^^^^^^^^publicationYear^^^^^^^^publicationMonth^^^^^^^^publicationDay^^^^^^^^"+
+	              		"views^^^^^^^^comments^^^^^^^^favorites^^^^^^^^ratings\r\n";
 	    csv.write(contentHeader);
 	    //var filenamecsv="metadata.csv";
 	        
@@ -55,29 +58,29 @@ exports.generateAll = function(callback)
 							
 							var content="";
 							//write csv file
-							content+=formalObj.id+",";
-							content+=formalObj.metadata.title.replace(/,/g,"")+",";
-							//content+=formalObj.metadata.description+",";
-							//content+=formalObj.metadata.tags+",";
-							content+=formalObj.metadata.tags.length+",";
-							content+=formalObj.metadata.channel+",";
-							content+=formalObj.metadata.category+",";
-							content+=formalObj.metadata.duration+",";
-							content+=formalObj.metadata.language+",";
-							content+=formalObj.metadata.creationDate+",";
+							content+='"'+formalObj.id+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.title+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.description+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.tags+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.tags.length+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.channel+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.category+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.duration+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.language+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.creationDate+'"'+csvSeparator;
 							var cDate = new Date(formalObj.metadata.creationDate);
-							content+=cDate.getFullYear()+",";
-							content+=cDate.getMonthAbbr()+",";
-							content+=cDate.getDate()+",";
-							content+=formalObj.metadata.publicationDate+",";
+							content+='"'+cDate.getFullYear()+'"'+csvSeparator;
+							content+='"'+cDate.getMonthAbbr()+'"'+csvSeparator;
+							content+='"'+cDate.getDate()+'"'+csvSeparator;
+							content+='"'+formalObj.metadata.publicationDate+'"'+csvSeparator;
 							var pDate = new Date(formalObj.metadata.publicationDate);
-							content+=pDate.getFullYear()+",";
-							content+=pDate.getMonthAbbr()+",";
-							content+=pDate.getDate()+",";
-							content+=formalObj.statistics.views+",";
-							content+=formalObj.statistics.comments+",";
-							content+=formalObj.statistics.favorites+",";
-							content+=formalObj.statistics.ratings+",";
+							content+='"'+pDate.getFullYear()+'"'+csvSeparator;
+							content+='"'+pDate.getMonthAbbr()+'"'+csvSeparator;
+							content+='"'+pDate.getDate()+'"'+csvSeparator;
+							content+='"'+formalObj.statistics.views+'"'+csvSeparator;
+							content+='"'+formalObj.statistics.comments+'"'+csvSeparator;
+							content+='"'+formalObj.statistics.favorites+'"'+csvSeparator;
+							content+='"'+formalObj.statistics.ratings+'"'+csvSeparator;
 							content+="\r\n";
 							
 							csv.write(content);
@@ -85,7 +88,7 @@ exports.generateAll = function(callback)
 						}
 						else
 						{
-							var ferr = fs.createWriteStream('tests/dailymotion/error.log', {'flags': 'a'});
+							var ferr = fs.createWriteStream('tests/dailymotion/error_metadata.log', {'flags': 'a'});
 							ferr.write(line + ":"+err + "\r\n");
 						}
 	              	});

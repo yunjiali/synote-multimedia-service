@@ -5,9 +5,11 @@ var log = Common.log,
 	restify = Common.restify;
 
 var http = require('http');
+var https = require('https');
 var xml2js = require('xml2js');
 
 var vlcService = require('../services/vlc-service.js');
+var ytKey = config.youtube.key;
 
 exports.getMetadata = getMetadata;
 
@@ -34,16 +36,18 @@ exports.generateThumbnail = function(id,videourl,time,callback){
 
 function getMetadata(videourl, callback)
 {
+	var metadataShort =false;
+	
 	var videoid = utils.getVideoIDFromYoutubeURL(videourl);
 	
 	if(videoid === undefined)
 		return next(new restify.InvalidArgumentError("Cannot get the YouTube video id from videourl"));
 	var options = {
-			host:"gdata.youtube.com",
-	        path:"/feeds/api/videos/"+videoid+"?v=2&alt=json&key="+config.youtube.key
+			host:"www.googleapis.com",
+	        path:"/youtube/v3/videos?id="+videoid+"&key="+ytKey+"&part=snippet,contentDetails,statistics,recordingDetails"
 	}
 	
-	http.get(options,function(response){
+	https.get(options,function(response){
 		
 		var result = '';
 		log.debug("Requesting metadata for Youtube video "+videoid+". Response status:"+response.statusCode);
@@ -67,6 +71,11 @@ function getMetadata(videourl, callback)
 			var err = new restify.InternalError("Response code 404: Cannot find YouTube video "+videoid);
 			return callback(err,result);
 		}
+		else if(response.statusCode === 503)
+		{
+			var err = new restify.InternalError("Response code 503: Backend error when accessing video "+videoid+". Please try again later.");
+			return callback(err,result);
+		}
 		
 		response.on('data', function(chunk){
 			//console.log(chunk.toString());
@@ -77,10 +86,42 @@ function getMetadata(videourl, callback)
 			//TODO: CustomiseException
 			if(err != null)
 				return callback(err,result);
-			log.debug(require('util').inspect(result, false, null));
-			var obj = JSON.parse(result);
-			log.debug(require('util').inspect(obj, false, null));
-			return callback(err,obj);	
+			//log.debug(require('util').inspect(result, false, null));
+			var ytObj = JSON.parse(result);
+			log.debug(require('util').inspect(ytObj, false, null));
+			
+			var formalObj = {}; //formalised response obj
+			formalObj.id = ytObj.items[0].id;
+			formalObj.metadata = {};
+			formalObj.metadata.title = ytObj.items[0].snippet.title;
+			formalObj.metadata.description = ytObj.items[0].snippet.description;
+			formalObj.metadata.tags = ytObj.items[0].snippet.tags;
+			formalObj.metadata.channel = ytObj.items[0].snippet.channelId;
+			formalObj.metadata.category = ytObj.items[0].snippet.categoryId; //no category for dm
+			formalObj.metadata.duration = ytObj.items[0].contentDetails.duration; //do it later to parse ISO8601 to seconds
+			formalObj.metadata.language = null; //not applicable for youtube
+			
+			var cDate = new Date(ytObj.items[0].snippet.publishedAt);
+			if(metadataShort == false)
+				formalObj.metadata.creationDateMilliSeconds = cDate.getTime();
+			formalObj.metadata.creationDate = ytObj.items[0].snippet.publishedAt;
+			
+			var pDate = new Date(ytObj.items[0].recordingDetails.recordingDate);
+			if(metadataShort == false)
+				formalObj.metadata.publicationDateMilliSeconds = pDate.getTime();
+			formalObj.metadata.publicationDate = ytObj.items[0].recordingDetails.recordingDate;
+			
+			if(metadataShort == false)
+				formalObj.metadata.isVideo = true;
+			if(metadataShort == false)
+				formalObj.metadata.thumbnail = ytObj.items[0].snippet.thumbnails.default.url;
+			
+			formalObj.statistics = {};
+			formalObj.statistics.views = ytObj.items[0].statistics.viewsCount;
+			formalObj.statistics.comments = ytObj.items[0].statistics.likeCount;
+			formalObj.statistics.favorites = ytObj.items[0].statistics.favoriteCount;
+			formalObj.statistics.ratings = parseInt(ytObj.items[0].statistics.likeCount)-parseInt(ytObj.items[0].statistics.dislikeCount);
+			return callback(err,formalObj);		
 	  	});
 	});
 }

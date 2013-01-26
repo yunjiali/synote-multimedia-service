@@ -1,0 +1,1520 @@
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix dbpedia-owl:  <http://dbpedia.org/ontology/> .
+@prefix nsa:     <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#> .
+@prefix opmv:    <http://purl.org/net/opmv/ns#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix timeline:  <http://purl.org/NET/c4dm/timeline.owl/> .
+@prefix linkedtv:  <http://data.linkedtv.eu/ontology/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix nerd:    <http://nerd.eurecom.fr/ontology#> .
+@prefix oa:      <http://www.w3.org/ns/openannotation/core/> .
+@prefix str:     <http://nlp2rdf.lod2.eu/schema/string/> .
+@prefix event:   <http://purl.org/NET/c4dm/event.owl#> .
+@prefix ma:      <http://www.w3.org/ns/ma-ont#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://data.linkedtv.eu/annotation/e919625e-83ac-48fb-84bf-dde364da5861>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.736Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/7a65978c-4469-4816-8f13-15ea0ef62bc4> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74#offset_2422_2432_since%201994> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=159000,163040> .
+
+<http://data.linkedtv.eu/text/a6d2f544-ae72-4c1d-9070-0e7094acdee0#offset_2094_2103_Frenchman>
+      a       str:OffsetBasedString ;
+      str:beginIndex "2094"^^xsd:long ;
+      str:endIndex "2103"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/a6d2f544-ae72-4c1d-9070-0e7094acdee0> .
+
+<http://data.linkedtv.eu/text/074afc40-9ba7-4c5b-8fa6-7aa16607d196>
+      a       str:String ;
+      str:label "allows you to surf the web for videos like this. "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/959bc90d-caef-4707-ae1c-12d02b65c55c>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/9fd308e8-7728-40e6-a26a-df93bdff378f> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.731Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/f5ec93e6-7c9e-417b-8062-42ecc9f5416e> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=178800,181640> , <http://data.linkedtv.eu/text/9fd308e8-7728-40e6-a26a-df93bdff378f#offset_0_7_Farmers> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=38280,41760>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/1f4f97a1-2a2c-4bdf-b309-32842ba4b2a0> ;
+      nsa:temporalEnd "41760"^^xsd:long ;
+      nsa:temporalStart "38280"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/05966cb1-90a4-4ea6-86e3-3722430b802e#offset_1972_1984_Clive%20Barker>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1972"^^xsd:long ;
+      str:endIndex "1984"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/05966cb1-90a4-4ea6-86e3-3722430b802e> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=147120,149600>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/78f689d5-8d81-4fd7-b40f-530ee87ea255> ;
+      nsa:temporalEnd "149600"^^xsd:long ;
+      nsa:temporalStart "147120"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/28d5e61d-d1e3-4142-9617-95745547fdbb>
+      a       str:String ;
+      str:label "donÕt blame the farmers. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/add39967-be61-4ec9-94ca-9c22303a731c>
+      a       str:String ;
+      str:label "Designed to let farmers dig big trenches very quickly, "^^xsd:string .
+
+<http://data.linkedtv.eu/text/ae32b146-2897-46ba-ba08-fb7badaa7dfb>
+      a       str:String ;
+      str:label "just one broken person and a rigorous police enquiry. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/fd5db4fd-ea27-4d47-8606-527d67e24b74>
+      a       str:String ;
+      str:label "And as if that wasnÕt enough, "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=37520,38200>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/c4d37096-af3f-4911-88bf-20e039b4b9ee> ;
+      nsa:temporalEnd "38200"^^xsd:long ;
+      nsa:temporalStart "37520"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/9fd308e8-7728-40e6-a26a-df93bdff378f#offset_0_7_Farmers>
+      a       str:OffsetBasedString ;
+      str:beginIndex "0"^^xsd:long ;
+      str:endIndex "7"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/9fd308e8-7728-40e6-a26a-df93bdff378f> .
+
+<http://data.linkedtv.eu/entity/f5ec93e6-7c9e-417b-8062-42ecc9f5416e>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Organization ;
+      rdfs:label "Farmers" ;
+      linkedtv:hasConfidence
+              "408.552"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13214" ;
+      dc:source "wikimeta" ;
+      dc:type "ORG.COM" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=44040,46120>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/0826bc1a-3abf-49c0-a78c-68a1a5299fcb> ;
+      nsa:temporalEnd "46120"^^xsd:long ;
+      nsa:temporalStart "44040"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/ff0aadd3-cffc-4d90-99a8-d07f1cef183e>
+      a       str:String ;
+      str:label "Get this - farmers work outside "^^xsd:string .
+
+<http://data.linkedtv.eu/text/0d76194c-ef15-47f3-a127-b5580db79a09>
+      a       str:String ;
+      str:label "some of the deadliest equipment known to man. "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/dd6ac9df-029c-4818-91fe-87365c0a7463>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Amount ;
+      rdfs:label "approximately two hundred people" ;
+      linkedtv:hasConfidence
+              "0.0"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13226" ;
+      dc:source "wikimeta" ;
+      dc:type "AMOUNT" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=32840,33920>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/e959afb7-e1d9-4fa5-9200-1e1ff5410689> ;
+      nsa:temporalEnd "33920"^^xsd:long ;
+      nsa:temporalStart "32840"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/cf0dfd75-6b6f-4fdd-80dd-7b79f545a88d>
+      a       str:String ;
+      str:label "to make it sound more friendly than it really is. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/dbd7dc23-0444-4aea-8cb8-1ef8e15e357d>
+      a       str:String ;
+      str:label "this thing can mince approximately two hundred people per hour. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/2e0de1b3-05c0-4d35-927a-72a6b5bd84e5>
+      a       str:String ;
+      str:label "(and farmettes - theyÕre the lady farmers) "^^xsd:string .
+
+<http://data.linkedtv.eu/text/9fd308e8-7728-40e6-a26a-df93bdff378f>
+      a       str:String ;
+      str:label "Depends on the arm, I supposeÉ "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=65560,66600>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/b0b6e913-89cb-4a38-83c7-c35a4591aa3c> ;
+      nsa:temporalEnd "66600"^^xsd:long ;
+      nsa:temporalStart "65560"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/entity/9f0b5c96-5dc1-40ac-8aa8-10e6b1053c44>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Thing ;
+      rdfs:label "corn flakes" ;
+      linkedtv:hasConfidence
+              "0.816177"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13215" ;
+      dc:source "zemanta" .
+
+<http://data.linkedtv.eu/annotation/4c4dbeed-2604-4ac2-b590-04ce653404bf>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/72a9cecc-2bbd-41cb-96d1-58f781383ba9> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.735Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/c0b2882a-a7e2-4c00-a068-f651865dcdfc> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=139000,140920> , <http://data.linkedtv.eu/text/72a9cecc-2bbd-41cb-96d1-58f781383ba9#offset_2035_2038_PS3> .
+
+<http://data.linkedtv.eu/entity/8eb43979-2867-4e30-b5ac-9c85dccba8c3>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Organization ;
+      rdfs:label "Lamier Kirogn" ;
+      linkedtv:hasConfidence
+              "0.581533"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13229" ;
+      dc:source "yahoo" ;
+      dc:type "organization" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=154240,157080>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/07c065f9-e8ac-4024-8108-75ac90c15a70> ;
+      nsa:temporalEnd "157080"^^xsd:long ;
+      nsa:temporalStart "154240"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74#offset_2422_2432_since%201994>
+      a       str:OffsetBasedString ;
+      str:beginIndex "2422"^^xsd:long ;
+      str:endIndex "2432"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=83280,85840>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/294e233c-c7b6-422f-94e7-b0a707be9f1a> ;
+      nsa:temporalEnd "85840"^^xsd:long ;
+      nsa:temporalStart "83280"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=29440,32720>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/924d7517-047c-4f41-9613-e6ae749bc9de> ;
+      nsa:temporalEnd "32720"^^xsd:long ;
+      nsa:temporalStart "29440"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/b2741241-d6bb-4130-bf64-52aaa3ebac06>
+      a       str:String ;
+      str:label "Although that would require some sort of conveyor belt arrangement "^^xsd:string .
+
+<http://data.linkedtv.eu/text/e959afb7-e1d9-4fa5-9200-1e1ff5410689#offset_78_85_farmers>
+      a       str:OffsetBasedString ;
+      str:beginIndex "78"^^xsd:long ;
+      str:endIndex "85"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/e959afb7-e1d9-4fa5-9200-1e1ff5410689> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=108920,112040>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/aa6db27f-ed8b-4a28-b7d0-55dfc3ea9098> ;
+      nsa:temporalEnd "112040"^^xsd:long ;
+      nsa:temporalStart "108920"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/entity/0f3e7421-dbc4-4d54-aa00-ae26fddf3d71>
+      a       nerd:Location , <http://data.linkedtv.eu/Entity> ;
+      rdfs:label "France's" ;
+      linkedtv:hasConfidence
+              "0.786659"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13234" ;
+      dc:source "zemanta" ;
+      dc:type "country" .
+
+<http://data.linkedtv.eu/text/31ea69e8-1a21-496d-8819-bd341700db18>
+      a       str:String ;
+      str:label "These are serious bits of kit, for serious men. "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/1fc7235c-b429-46d2-8e5c-730b12e2ad60>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/aa6db27f-ed8b-4a28-b7d0-55dfc3ea9098> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.733Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/fdc042ef-446d-4174-8aee-777315c07617> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/aa6db27f-ed8b-4a28-b7d0-55dfc3ea9098#offset_1498_1508_tree%20trunk> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=108920,112040> .
+
+<http://data.linkedtv.eu/annotation/25a30167-75ce-4d75-9f4c-2273d9af1b3b>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/3957c7b2-0f4f-4caa-a475-f2491b670be5> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.737Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/d1f7a2e5-4c40-4f0a-9a76-b21b1a8099a5> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/3957c7b2-0f4f-4caa-a475-f2491b670be5#offset_2541_2549_Weetabix> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=167520,170280> .
+
+<http://data.linkedtv.eu/text/07c065f9-e8ac-4024-8108-75ac90c15a70>
+      a       str:String ;
+      str:label "mounted on the end of a huge, pivoting steel arm. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/7ac8f8e0-d803-47ea-bbe3-5cb7a2c8f363>
+      a       str:String ;
+      str:label "Or woman. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/0d76194c-ef15-47f3-a127-b5580db79a09#offset_506_525_deadliest%20equipment>
+      a       str:OffsetBasedString ;
+      str:beginIndex "506"^^xsd:long ;
+      str:endIndex "525"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/0d76194c-ef15-47f3-a127-b5580db79a09> .
+
+<http://data.linkedtv.eu/entity/8abcf5c5-d4b1-4a5f-8f20-d3fcf368c7bc>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Thing ;
+      rdfs:label "court of law" ;
+      linkedtv:hasConfidence
+              "0.866149"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13228" ;
+      dc:source "zemanta" .
+
+<http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19#offset_1557_1565_thirteen>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1557"^^xsd:long ;
+      str:endIndex "1565"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19> .
+
+<http://data.linkedtv.eu/annotation/7e4ebb25-fd47-46d3-8046-961315f51a12>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/294e233c-c7b6-422f-94e7-b0a707be9f1a> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.732Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/0351860a-57ac-4f51-9952-0f9af36724af> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/294e233c-c7b6-422f-94e7-b0a707be9f1a#offset_1026_1042_%C3%94Tractor%20Mounted> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=83280,85840> .
+
+<http://data.linkedtv.eu/annotation/a53df610-f061-4590-975b-2ebd12432320>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/a6d2f544-ae72-4c1d-9070-0e7094acdee0> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.736Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/1bb359a8-b755-4b9c-9453-fe461105cd2f> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/a6d2f544-ae72-4c1d-9070-0e7094acdee0#offset_2094_2103_Frenchman> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=142400,145720> .
+
+<http://data.linkedtv.eu/annotation/e308d723-7bad-4d78-88e7-33d01835067e>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.736Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/0f3e7421-dbc4-4d54-aa00-ae26fddf3d71> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74#offset_2387_2395_France%27s> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=159000,163040> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=115800,118600>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/c87f987d-acd2-4e1f-9a8b-3bae28f4ea27> ;
+      nsa:temporalEnd "118600"^^xsd:long ;
+      nsa:temporalStart "115800"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/entity/67d3a8d5-3925-49ca-825e-7c86b601fc65>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Thing ;
+      rdfs:label "working day" ;
+      linkedtv:hasConfidence
+              "0.75239"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13224" ;
+      dc:source "zemanta" .
+
+<http://data.linkedtv.eu/text/07c065f9-e8ac-4024-8108-75ac90c15a70#offset_2349_2358_steel%20arm>
+      a       str:OffsetBasedString ;
+      str:beginIndex "2349"^^xsd:long ;
+      str:endIndex "2358"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/07c065f9-e8ac-4024-8108-75ac90c15a70> .
+
+<http://data.linkedtv.eu/entity/2efb8985-c554-47b4-9455-8518425005a5>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Thing ;
+      rdfs:label "farmers" ;
+      linkedtv:hasConfidence
+              "0.813975"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13216" ;
+      dc:source "zemanta" .
+
+<http://data.linkedtv.eu/text/3f13412f-0997-423c-ade2-76543f91d021>
+      a       str:String ;
+      str:label "to a device designed purely for splitting things in half? "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/7c2e37aa-7409-4856-91ca-d009b56f7652>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/1c3a0b11-95d0-43f5-8633-269ac4e36ee2> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.733Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/98ca8e42-ae3d-406b-9e3b-6721bbae7948> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/1c3a0b11-95d0-43f5-8633-269ac4e36ee2#offset_1337_1356_Teknamotor%20Skorpion> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=101480,103720> .
+
+<http://data.linkedtv.eu/text/af756555-9654-4712-8f9a-aaaf1c40b935>
+      a       str:String ;
+      str:label "Or an arm. "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/823af70a-603a-4b81-922f-6add8f4e2831>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Organization ;
+      rdfs:label "ÔShelton Super" ;
+      linkedtv:hasConfidence
+              "0.0"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13218" ;
+      dc:source "wikimeta" ;
+      dc:type "ORG" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=139000,140920>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/72a9cecc-2bbd-41cb-96d1-58f781383ba9> ;
+      nsa:temporalEnd "140920"^^xsd:long ;
+      nsa:temporalStart "139000"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/bcb4cbb3-1d5f-4010-8537-4c28b58fb788>
+      a       str:String ;
+      str:label "I think they put ÔSuperÕ in the title "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=49840,52040>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/ff0aadd3-cffc-4d90-99a8-d07f1cef183e> ;
+      nsa:temporalEnd "52040"^^xsd:long ;
+      nsa:temporalStart "49840"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=36120,37440>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/2d83823d-a92d-487e-91c1-f37f60d00502> ;
+      nsa:temporalEnd "37440"^^xsd:long ;
+      nsa:temporalStart "36120"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/b620f47b-3f4a-4ac8-b861-78a7b1b8fa86>
+      a       str:String ;
+      str:label "takes whopping great tree trunks "^^xsd:string .
+
+<http://data.linkedtv.eu/text/05966cb1-90a4-4ea6-86e3-3722430b802e>
+      a       str:String ;
+      str:label "This oneÕs like something out of a Clive Barker novel. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/924d7517-047c-4f41-9613-e6ae749bc9de#offset_54_65_corn%20flakes>
+      a       str:OffsetBasedString ;
+      str:beginIndex "54"^^xsd:long ;
+      str:endIndex "65"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/924d7517-047c-4f41-9613-e6ae749bc9de> .
+
+<http://data.linkedtv.eu/text/3b6ea816-41a3-47dd-80b0-eabb8fd332b8#offset_1887_1900_Lamier%20Kirogn>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1887"^^xsd:long ;
+      str:endIndex "1900"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/3b6ea816-41a3-47dd-80b0-eabb8fd332b8> .
+
+<http://data.linkedtv.eu/entity/c0b2882a-a7e2-4c00-a068-f651865dcdfc>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Organization ;
+      rdfs:label "PS3" ;
+      linkedtv:hasConfidence
+              "0.67"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13231" ;
+      dc:source "saplo" ;
+      dc:type "ORGANIZATION" .
+
+<http://data.linkedtv.eu/annotation/12dcb394-2ce8-4dbe-b704-c08846793f67>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/07c065f9-e8ac-4024-8108-75ac90c15a70> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.736Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/59a98f7c-81f5-4c68-a1d4-67f562917750> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/07c065f9-e8ac-4024-8108-75ac90c15a70#offset_2349_2358_steel%20arm> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=154240,157080> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=149560,151640>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/26ddce00-044b-4648-9aa3-7cb32ec58f7e> ;
+      nsa:temporalEnd "151640"^^xsd:long ;
+      nsa:temporalStart "149560"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/entity/0351860a-57ac-4f51-9952-0f9af36724af>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Person ;
+      rdfs:label "ÔTractor Mounted" ;
+      linkedtv:hasConfidence
+              "0.69"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13219" ;
+      dc:source "saplo" ;
+      dc:type "PERSON" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=157040,159040>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/899cc063-ee4c-4cb5-89a0-8867c316d624> ;
+      nsa:temporalEnd "159040"^^xsd:long ;
+      nsa:temporalStart "157040"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/727e0819-b64a-4a47-b523-f3dffa7bb502>
+      a       str:String ;
+      str:label "or getting a tongue-splinter from the piece of hay "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/18193a25-db78-423f-9365-4d89b943a18a>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Amount ;
+      rdfs:label "four bin" ;
+      linkedtv:hasConfidence
+              "0.0"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13225" ;
+      dc:source "wikimeta" ;
+      dc:type "AMOUNT" .
+
+<http://data.linkedtv.eu/text/e52d1cca-540a-4db9-9ba8-82552159d487>
+      a       str:String ;
+      str:label "they also have to fiddle about with "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=130240,132600>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/3b6ea816-41a3-47dd-80b0-eabb8fd332b8> ;
+      nsa:temporalEnd "132600"^^xsd:long ;
+      nsa:temporalStart "130240"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=86200,89120>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/9744be6f-97f9-4263-af53-69f5ccb89e22> ;
+      nsa:temporalEnd "89120"^^xsd:long ;
+      nsa:temporalStart "86200"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/1ef82a75-ae30-4485-a6db-2facb53a37ba>
+      a       str:String ;
+      str:label "because itÕs really just five jagged rotating blades "^^xsd:string .
+
+<http://data.linkedtv.eu/text/0826bc1a-3abf-49c0-a78c-68a1a5299fcb>
+      a       str:String ;
+      str:label "lazily dangling from the side of my mouth. "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/7eca1881-528b-43aa-9f67-fcd8b12baf13>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/9744be6f-97f9-4263-af53-69f5ccb89e22> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.733Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/78dda7de-1439-40f6-a4d5-c14daa0e4855> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/9744be6f-97f9-4263-af53-69f5ccb89e22#offset_1102_1109_all%20day> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=86200,89120> .
+
+<http://data.linkedtv.eu/annotation/3663a1e3-8f34-4bc8-a097-db506d278406>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.733Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/048fe22b-4856-4d18-85bd-89c9f7d9cf49> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19#offset_1557_1565_thirteen> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=112200,115840> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=52040,53400>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/ffaa2f48-70c0-4318-8ef1-684bc1bc86de> ;
+      nsa:temporalEnd "53400"^^xsd:long ;
+      nsa:temporalStart "52040"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/c4d37096-af3f-4911-88bf-20e039b4b9ee>
+      a       str:String ;
+      str:label "And women. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/3957c7b2-0f4f-4caa-a475-f2491b670be5>
+      a       str:String ;
+      str:label "So if you do ever find a severed knuckle in your Weetabix, "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/78dda7de-1439-40f6-a4d5-c14daa0e4855>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Time ;
+      rdfs:label "all day" ;
+      linkedtv:hasConfidence
+              "0.0"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13220" ;
+      dc:source "wikimeta" ;
+      dc:type "TIME" .
+
+<http://data.linkedtv.eu/text/1c3a0b11-95d0-43f5-8633-269ac4e36ee2#offset_1337_1356_Teknamotor%20Skorpion>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1337"^^xsd:long ;
+      str:endIndex "1356"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/1c3a0b11-95d0-43f5-8633-269ac4e36ee2> .
+
+<http://data.linkedtv.eu/text/a5418a0a-9dcb-474d-b09e-c7f026b78e8e#offset_775_789_%C3%94Shelton%20Super>
+      a       str:OffsetBasedString ;
+      str:beginIndex "775"^^xsd:long ;
+      str:endIndex "789"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/a5418a0a-9dcb-474d-b09e-c7f026b78e8e> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1>
+      a       ma:MediaResource ;
+      ma:locator <http://www.dailymotion.com/video/28783389> .
+
+<http://data.linkedtv.eu/annotation/ed8e4bc4-7599-4640-b83b-18629925c50d>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/e959afb7-e1d9-4fa5-9200-1e1ff5410689> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.732Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/2efb8985-c554-47b4-9455-8518425005a5> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=32840,33920> , <http://data.linkedtv.eu/text/e959afb7-e1d9-4fa5-9200-1e1ff5410689#offset_78_85_farmers> .
+
+<http://data.linkedtv.eu/text/b0b6e913-89cb-4a38-83c7-c35a4591aa3c>
+      a       str:String ;
+      str:label "but youÕre not going to lose an arm "^^xsd:string .
+
+<http://data.linkedtv.eu/text/42230df9-3116-4279-b008-79c18c7b03a2>
+      a       str:String ;
+      str:label "because they invented the thing. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=60000,61480>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/1d791b8c-358d-45a7-ad32-e7b8eb64fd8f> ;
+      nsa:temporalEnd "61480"^^xsd:long ;
+      nsa:temporalStart "60000"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/fef31f89-2c26-4b34-aa69-edf5db0fcd51>
+      a       str:String ;
+      str:label "cut a human in half and you don't end up with two smaller people, "^^xsd:string .
+
+<http://data.linkedtv.eu/text/924d7517-047c-4f41-9613-e6ae749bc9de>
+      a       str:String ;
+      str:label "Risking their lives every day to keep you in corn flakes. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=126480,129720>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/b7f886d7-d5aa-4f3c-85e3-d5b2df439422> ;
+      nsa:temporalEnd "129720"^^xsd:long ;
+      nsa:temporalStart "126480"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/annotation/eeba0a27-7d7d-4f29-8409-06c2204ab684>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.734Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/67d3a8d5-3925-49ca-825e-7c86b601fc65> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=112200,115840> , <http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19#offset_1571_1582_working%20day> .
+
+<http://data.linkedtv.eu/text/b2741241-d6bb-4130-bf64-52aaa3ebac06#offset_1784_1797_conveyor%20belt>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1784"^^xsd:long ;
+      str:endIndex "1797"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/b2741241-d6bb-4130-bf64-52aaa3ebac06> .
+
+<http://data.linkedtv.eu/entity/d729ae06-2a62-4d62-a819-7e68a5805f33>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Thing ;
+      rdfs:label "conveyor belt" ;
+      linkedtv:hasConfidence
+              "74.1375"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13227" ;
+      dc:source "wikimeta" ;
+      dc:type "AMBIG" .
+
+<http://data.linkedtv.eu/text/49c69dd2-0f52-48ea-be5f-914efe110f91>
+      a       str:String ;
+      str:label "if you stick to using a mouse. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/1d791b8c-358d-45a7-ad32-e7b8eb64fd8f>
+      a       str:String ;
+      str:label "Just be thankful youÕve got the sort of job that "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=41760,44040>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/727e0819-b64a-4a47-b523-f3dffa7bb502> ;
+      nsa:temporalEnd "44040"^^xsd:long ;
+      nsa:temporalStart "41760"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=112200,115840>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19> ;
+      nsa:temporalEnd "115840"^^xsd:long ;
+      nsa:temporalStart "112200"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=176360,178760>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/a99a21b9-a754-424e-a4b2-235bc89d5ed9> ;
+      nsa:temporalEnd "178760"^^xsd:long ;
+      nsa:temporalStart "176360"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=174880,175720>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/af756555-9654-4712-8f9a-aaaf1c40b935> ;
+      nsa:temporalEnd "175720"^^xsd:long ;
+      nsa:temporalStart "174880"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=123760,126520>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/b2741241-d6bb-4130-bf64-52aaa3ebac06> ;
+      nsa:temporalEnd "126520"^^xsd:long ;
+      nsa:temporalStart "123760"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/1c3a0b11-95d0-43f5-8633-269ac4e36ee2>
+      a       str:String ;
+      str:label "The Teknamotor Skorpion "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/fdc042ef-446d-4174-8aee-777315c07617>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Thing ;
+      rdfs:label "tree trunk" ;
+      linkedtv:hasConfidence
+              "25.6867"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13222" ;
+      dc:source "wikimeta" ;
+      dc:type "AMBIG" .
+
+<http://data.linkedtv.eu/text/22f11e58-2eae-4cdf-8f01-c27fcc2453eb>
+      a       str:String ;
+      str:label "I have no way of hearing you ask. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=93000,94280>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/3b9c5c7d-6d21-484a-9fd3-a2353ec059ce> ;
+      nsa:temporalEnd "94280"^^xsd:long ;
+      nsa:temporalStart "93000"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/9744be6f-97f9-4263-af53-69f5ccb89e22#offset_1102_1109_all%20day>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1102"^^xsd:long ;
+      str:endIndex "1109"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/9744be6f-97f9-4263-af53-69f5ccb89e22> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=66560,68320>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/49c69dd2-0f52-48ea-be5f-914efe110f91> ;
+      nsa:temporalEnd "68320"^^xsd:long ;
+      nsa:temporalStart "66560"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/89a03541-81d4-402a-bdc8-8292d6bf86fe>
+      a       str:String ;
+      str:label "If my calculations are correct, "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=167520,170280>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/3957c7b2-0f4f-4caa-a475-f2491b670be5> ;
+      nsa:temporalEnd "170280"^^xsd:long ;
+      nsa:temporalStart "167520"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=79280,80720>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/bcb4cbb3-1d5f-4010-8537-4c28b58fb788> ;
+      nsa:temporalEnd "80720"^^xsd:long ;
+      nsa:temporalStart "79280"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/annotation/b1785607-2985-45f4-aefe-4cafca54c699>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/a99a21b9-a754-424e-a4b2-235bc89d5ed9> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.737Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/a36cb58a-245f-4e54-bf70-2ae78f2efcf4> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/a99a21b9-a754-424e-a4b2-235bc89d5ed9#offset_2680_2688_Weetabix> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=176360,178760> .
+
+<http://data.linkedtv.eu/text/c87f987d-acd2-4e1f-9a8b-3bae28f4ea27#offset_1632_1640_four%20bin>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1632"^^xsd:long ;
+      str:endIndex "1640"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/c87f987d-acd2-4e1f-9a8b-3bae28f4ea27> .
+
+<http://data.linkedtv.eu/text/a99a21b9-a754-424e-a4b2-235bc89d5ed9#offset_2680_2688_Weetabix>
+      a       str:OffsetBasedString ;
+      str:beginIndex "2680"^^xsd:long ;
+      str:endIndex "2688"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/a99a21b9-a754-424e-a4b2-235bc89d5ed9> .
+
+<http://data.linkedtv.eu/text/e959afb7-e1d9-4fa5-9200-1e1ff5410689>
+      a       str:String ;
+      str:label "Seriously, farmers "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=171360,174400>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/6d4ae6a7-0a9f-418b-a841-26a700b305f7> ;
+      nsa:temporalEnd "174400"^^xsd:long ;
+      nsa:temporalStart "171360"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=137160,138840>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/687d3c6f-0cfa-4d45-b751-f6b4a75ea5ec> ;
+      nsa:temporalEnd "138840"^^xsd:long ;
+      nsa:temporalStart "137160"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/75c24d62-2da0-4b2b-b27e-183748a623de>
+      a       str:String ;
+      str:label "depending on how old you are. "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/7c9387d7-cdc2-41b3-8894-a1a11d46bb0b>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/a5418a0a-9dcb-474d-b09e-c7f026b78e8e> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.732Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/823af70a-603a-4b81-922f-6add8f4e2831> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=68760,71160> , <http://data.linkedtv.eu/text/a5418a0a-9dcb-474d-b09e-c7f026b78e8e#offset_775_789_%C3%94Shelton%20Super> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=120240,123720>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/dbd7dc23-0444-4aea-8cb8-1ef8e15e357d> ;
+      nsa:temporalEnd "123720"^^xsd:long ;
+      nsa:temporalStart "120240"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/a5418a0a-9dcb-474d-b09e-c7f026b78e8e>
+      a       str:String ;
+      str:label "Not so with the ÔShelton Super TrencherÕ. "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/d0bdf293-92b5-4fa2-94a9-7c1e8155366e>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/c87f987d-acd2-4e1f-9a8b-3bae28f4ea27> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.734Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/18193a25-db78-423f-9365-4d89b943a18a> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/c87f987d-acd2-4e1f-9a8b-3bae28f4ea27#offset_1632_1640_four%20bin> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=115800,118600> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=151680,154280>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/1ef82a75-ae30-4485-a6db-2facb53a37ba> ;
+      nsa:temporalEnd "154280"^^xsd:long ;
+      nsa:temporalStart "151680"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/1f4f97a1-2a2c-4bdf-b309-32842ba4b2a0>
+      a       str:String ;
+      str:label "If I were farmering, IÕd be worried about catching mad chicken disease "^^xsd:string .
+
+<http://data.linkedtv.eu/text/74bede25-dc89-4287-a5ea-93d9eada2bcd>
+      a       str:String ;
+      str:label "- spelt with a ÔkÕ cos this thingÕs too hard for a ÔcÕ "^^xsd:string .
+
+<http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74>
+      a       str:String ;
+      str:label "keeping France's rural population in check since 1994. "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/7efcf7cd-4200-48a3-9e2f-9c798acad476>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Product ;
+      rdfs:label "deadliest equipment" ;
+      linkedtv:hasConfidence
+              "0.354"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13217" ;
+      dc:source "opencalais" ;
+      dc:type "IndustryTerm" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=59000,59560>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/7ac8f8e0-d803-47ea-bbe3-5cb7a2c8f363> ;
+      nsa:temporalEnd "59560"^^xsd:long ;
+      nsa:temporalStart "59000"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/dbd7dc23-0444-4aea-8cb8-1ef8e15e357d#offset_1700_1732_approximately%20two%20hu>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1700"^^xsd:long ;
+      str:endIndex "1732"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/dbd7dc23-0444-4aea-8cb8-1ef8e15e357d> .
+
+<http://data.linkedtv.eu/text/08dcdc73-5c97-4d15-ba98-8334592ebe5e>
+      a       str:String ;
+      str:label "Yet farmers face these and many other risks every day. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=34000,36120>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/2e0de1b3-05c0-4d35-927a-72a6b5bd84e5> ;
+      nsa:temporalEnd "36120"^^xsd:long ;
+      nsa:temporalStart "34000"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/ffaa2f48-70c0-4318-8ef1-684bc1bc86de>
+      a       str:String ;
+      str:label "even if it's raining. "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/1bb359a8-b755-4b9c-9453-fe461105cd2f>
+      a       nerd:Location , <http://data.linkedtv.eu/Entity> ;
+      rdfs:label "Frenchman" ;
+      linkedtv:hasConfidence
+              "1.0"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13232" ;
+      dc:source "saplo" ;
+      dc:type "LOCATION" .
+
+<http://data.linkedtv.eu/text/899cc063-ee4c-4cb5-89a0-8867c316d624>
+      a       str:String ;
+      str:label "The Lamier Kirogn: "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/d1f7a2e5-4c40-4f0a-9a76-b21b1a8099a5>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Person ;
+      rdfs:label "Weetabix" ;
+      linkedtv:hasConfidence
+              "0.99"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13236" ;
+      dc:source "saplo" ;
+      dc:type "PERSON" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=178800,181640>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/9fd308e8-7728-40e6-a26a-df93bdff378f> ;
+      nsa:temporalEnd "181640"^^xsd:long ;
+      nsa:temporalStart "178800"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=97520,101440>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/ae32b146-2897-46ba-ba08-fb7badaa7dfb> ;
+      nsa:temporalEnd "101440"^^xsd:long ;
+      nsa:temporalStart "97520"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/3b6ea816-41a3-47dd-80b0-eabb8fd332b8>
+      a       str:String ;
+      str:label "ÒBut what about the Lamier Kirogn?Ó "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=132560,134440>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/22f11e58-2eae-4cdf-8f01-c27fcc2453eb> ;
+      nsa:temporalEnd "134440"^^xsd:long ;
+      nsa:temporalStart "132560"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/annotation/3a59d9b8-0baa-463d-a7dd-4472dcfe2f49>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/0d76194c-ef15-47f3-a127-b5580db79a09> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.732Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/7efcf7cd-4200-48a3-9e2f-9c798acad476> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=55840,58400> , <http://data.linkedtv.eu/text/0d76194c-ef15-47f3-a127-b5580db79a09#offset_506_525_deadliest%20equipment> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=142400,145720>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/a6d2f544-ae72-4c1d-9070-0e7094acdee0> ;
+      nsa:temporalEnd "145720"^^xsd:long ;
+      nsa:temporalStart "142400"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=53440,54480>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/fd5db4fd-ea27-4d47-8606-527d67e24b74> ;
+      nsa:temporalEnd "54480"^^xsd:long ;
+      nsa:temporalStart "53440"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=94240,97560>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/fef31f89-2c26-4b34-aa69-edf5db0fcd51> ;
+      nsa:temporalEnd "97560"^^xsd:long ;
+      nsa:temporalStart "94240"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=159000,163040>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74> ;
+      nsa:temporalEnd "163040"^^xsd:long ;
+      nsa:temporalStart "159000"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/9744be6f-97f9-4263-af53-69f5ccb89e22>
+      a       str:String ;
+      str:label "What could possibly go wrong when you spend all day in close proximity "^^xsd:string .
+
+<http://data.linkedtv.eu/text/78f689d5-8d81-4fd7-b40f-530ee87ea255>
+      a       str:String ;
+      str:label "But donÕt ask a Frenchman to demonstrate it. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=61480,63920>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/074afc40-9ba7-4c5b-8fa6-7aa16607d196> ;
+      nsa:temporalEnd "63920"^^xsd:long ;
+      nsa:temporalStart "61480"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=68760,71160>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/a5418a0a-9dcb-474d-b09e-c7f026b78e8e> ;
+      nsa:temporalEnd "71160"^^xsd:long ;
+      nsa:temporalStart "68760"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/72a9cecc-2bbd-41cb-96d1-58f781383ba9>
+      a       str:String ;
+      str:label "Or ÔDead Rising 2Õ on the PS3, "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=80680,82840>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/cf0dfd75-6b6f-4fdd-80dd-7b79f545a88d> ;
+      nsa:temporalEnd "82840"^^xsd:long ;
+      nsa:temporalStart "80680"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/annotation/32cfb97b-9f22-4e81-8b12-3b8be138a8eb>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/dbd7dc23-0444-4aea-8cb8-1ef8e15e357d> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.734Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/dd6ac9df-029c-4818-91fe-87365c0a7463> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=120240,123720> , <http://data.linkedtv.eu/text/dbd7dc23-0444-4aea-8cb8-1ef8e15e357d#offset_1700_1732_approximately%20two%20hu> .
+
+<http://data.linkedtv.eu/text/c88ff4c9-2770-4c7a-9c36-4746230b7501>
+      a       str:String ;
+      str:label "Sure it might get a little boring at times, "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=166880,167560>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/2ad6cb08-06c4-42a1-8ce9-2dc1fba25d81> ;
+      nsa:temporalEnd "167560"^^xsd:long ;
+      nsa:temporalStart "166880"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=107160,108960>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/b620f47b-3f4a-4ac8-b861-78a7b1b8fa86> ;
+      nsa:temporalEnd "108960"^^xsd:long ;
+      nsa:temporalStart "107160"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=74360,79280>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/cf2867e4-e94b-43d5-b216-e15f4f4c3114> ;
+      nsa:temporalEnd "79280"^^xsd:long ;
+      nsa:temporalStart "74360"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=134440,137200>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/05966cb1-90a4-4ea6-86e3-3722430b802e> ;
+      nsa:temporalEnd "137200"^^xsd:long ;
+      nsa:temporalStart "134440"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/2d83823d-a92d-487e-91c1-f37f60d00502>
+      a       str:String ;
+      str:label "are hard men. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/a99a21b9-a754-424e-a4b2-235bc89d5ed9>
+      a       str:String ;
+      str:label "Although that wouldnÕt fit in a box of Weetabix, would it? "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=163240,166600>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/31ea69e8-1a21-496d-8819-bd341700db18> ;
+      nsa:temporalEnd "166600"^^xsd:long ;
+      nsa:temporalStart "163240"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=28560,29400>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/08ec4cb7-e48e-4c96-9b97-aa79ec029158> ;
+      nsa:temporalEnd "29400"^^xsd:long ;
+      nsa:temporalStart "28560"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/aa6db27f-ed8b-4a28-b7d0-55dfc3ea9098>
+      a       str:String ;
+      str:label "and very quickly turns them into tiny little bits of tree trunk. "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/98ca8e42-ae3d-406b-9e3b-6721bbae7948>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Person ;
+      rdfs:label "Teknamotor Skorpion" ;
+      linkedtv:hasConfidence
+              "0.68"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13221" ;
+      dc:source "saplo" ;
+      dc:type "PERSON" .
+
+<http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19>
+      a       str:String ;
+      str:label "Take a step too close at any point during your thirteen hour working day "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=103680,107200>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/74bede25-dc89-4287-a5ea-93d9eada2bcd> ;
+      nsa:temporalEnd "107200"^^xsd:long ;
+      nsa:temporalStart "103680"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/cf2867e4-e94b-43d5-b216-e15f4f4c3114>
+      a       str:String ;
+      str:label "it is - put simply - an enormous, fast-rotating, wheel of death. "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/5bce3238-b4b5-4c81-92c1-9ab8865708d1>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/b7f886d7-d5aa-4f3c-85e3-d5b2df439422> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.735Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/8abcf5c5-d4b1-4a5f-8f20-d3fcf368c7bc> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/b7f886d7-d5aa-4f3c-85e3-d5b2df439422#offset_1853_1865_court%20of%20law> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=126480,129720> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=55840,58400>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/0d76194c-ef15-47f3-a127-b5580db79a09> ;
+      nsa:temporalEnd "58400"^^xsd:long ;
+      nsa:temporalStart "55840"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/2ad6cb08-06c4-42a1-8ce9-2dc1fba25d81>
+      a       str:String ;
+      str:label "Or women. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=46280,49840>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/08dcdc73-5c97-4d15-ba98-8334592ebe5e> ;
+      nsa:temporalEnd "49840"^^xsd:long ;
+      nsa:temporalStart "46280"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/72a9cecc-2bbd-41cb-96d1-58f781383ba9#offset_2035_2038_PS3>
+      a       str:OffsetBasedString ;
+      str:beginIndex "2035"^^xsd:long ;
+      str:endIndex "2038"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/72a9cecc-2bbd-41cb-96d1-58f781383ba9> .
+
+<http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19#offset_1571_1582_working%20day>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1571"^^xsd:long ;
+      str:endIndex "1582"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/259ae197-845b-4530-ac4b-caea94cbaf19> .
+
+<http://data.linkedtv.eu/entity/3e9b53a7-4b53-4736-a94c-72c418e54efd>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Person ;
+      rdfs:label "Clive Barker" ;
+      linkedtv:hasConfidence
+              "0.67"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13230" ;
+      dc:source "saplo" ;
+      dc:type "PERSON" .
+
+<http://data.linkedtv.eu/entity/a36cb58a-245f-4e54-bf70-2ae78f2efcf4>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Organization ;
+      rdfs:label "Weetabix" ;
+      linkedtv:hasConfidence
+              "0.856759"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13237" ;
+      dc:source "alchemyapi" ;
+      dc:type "Company" .
+
+<http://data.linkedtv.eu/text/6d4ae6a7-0a9f-418b-a841-26a700b305f7>
+      a       str:String ;
+      str:label "After all, it could so easily have been a whole hand. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=140880,142440>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/75c24d62-2da0-4b2b-b27e-183748a623de> ;
+      nsa:temporalEnd "142440"^^xsd:long ;
+      nsa:temporalStart "140880"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/294e233c-c7b6-422f-94e7-b0a707be9f1a>
+      a       str:String ;
+      str:label "Then thereÕs the ÔTractor Mounted Log-SplitterÕ. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=145680,147160>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/42230df9-3116-4279-b008-79c18c7b03a2> ;
+      nsa:temporalEnd "147160"^^xsd:long ;
+      nsa:temporalStart "145680"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=54480,55880>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/e52d1cca-540a-4db9-9ba8-82552159d487> ;
+      nsa:temporalEnd "55880"^^xsd:long ;
+      nsa:temporalStart "54480"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/294e233c-c7b6-422f-94e7-b0a707be9f1a#offset_1026_1042_%C3%94Tractor%20Mounted>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1026"^^xsd:long ;
+      str:endIndex "1042"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/294e233c-c7b6-422f-94e7-b0a707be9f1a> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=64000,65600>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/c88ff4c9-2770-4c7a-9c36-4746230b7501> ;
+      nsa:temporalEnd "65600"^^xsd:long ;
+      nsa:temporalStart "64000"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/687d3c6f-0cfa-4d45-b751-f6b4a75ea5ec>
+      a       str:String ;
+      str:label "Or a ÔSawÕ film. "^^xsd:string .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=170240,171400>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/28d5e61d-d1e3-4142-9617-95745547fdbb> ;
+      nsa:temporalEnd "171400"^^xsd:long ;
+      nsa:temporalStart "170240"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/c87f987d-acd2-4e1f-9a8b-3bae28f4ea27>
+      a       str:String ;
+      str:label "and theyÕll be clearing you up with a shovel and four bin bags. "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/0a11fb97-0968-4687-9c73-8708476106a6>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/05966cb1-90a4-4ea6-86e3-3722430b802e> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.735Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/3e9b53a7-4b53-4736-a94c-72c418e54efd> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/05966cb1-90a4-4ea6-86e3-3722430b802e#offset_1972_1984_Clive%20Barker> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=134440,137200> .
+
+<http://data.linkedtv.eu/text/aa6db27f-ed8b-4a28-b7d0-55dfc3ea9098#offset_1498_1508_tree%20trunk>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1498"^^xsd:long ;
+      str:endIndex "1508"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/aa6db27f-ed8b-4a28-b7d0-55dfc3ea9098> .
+
+<http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74#offset_2387_2395_France%27s>
+      a       str:OffsetBasedString ;
+      str:beginIndex "2387"^^xsd:long ;
+      str:endIndex "2395"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/f1c634cb-d1d4-4a52-a3f4-1465fd649b74> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=71120,74400>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/add39967-be61-4ec9-94ca-9c22303a731c> ;
+      nsa:temporalEnd "74400"^^xsd:long ;
+      nsa:temporalStart "71120"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/b7f886d7-d5aa-4f3c-85e3-d5b2df439422#offset_1853_1865_court%20of%20law>
+      a       str:OffsetBasedString ;
+      str:beginIndex "1853"^^xsd:long ;
+      str:endIndex "1865"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/b7f886d7-d5aa-4f3c-85e3-d5b2df439422> .
+
+<http://data.linkedtv.eu/text/b7f886d7-d5aa-4f3c-85e3-d5b2df439422>
+      a       str:String ;
+      str:label "which could be tricky to explain away in a court of law. "^^xsd:string .
+
+<http://data.linkedtv.eu/entity/7a65978c-4469-4816-8f13-15ea0ef62bc4>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Time ;
+      rdfs:label "since 1994" ;
+      linkedtv:hasConfidence
+              "0.0"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13235" ;
+      dc:source "wikimeta" ;
+      dc:type "TIME" .
+
+<http://data.linkedtv.eu/text/a6d2f544-ae72-4c1d-9070-0e7094acdee0>
+      a       str:String ;
+      str:label "If youÕre unsure, ask a Frenchman to help with the pronunciation "^^xsd:string .
+
+<http://data.linkedtv.eu/text/26ddce00-044b-4648-9aa3-7cb32ec58f7e>
+      a       str:String ;
+      str:label "In fact, donÕt ask anyone to demonstrate it "^^xsd:string .
+
+<http://data.linkedtv.eu/annotation/d8426e60-45c1-43b9-a7f4-8a49f39e162b>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/924d7517-047c-4f41-9613-e6ae749bc9de> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.731Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/9f0b5c96-5dc1-40ac-8aa8-10e6b1053c44> ;
+      oa:hasTarget <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=29440,32720> , <http://data.linkedtv.eu/text/924d7517-047c-4f41-9613-e6ae749bc9de#offset_54_65_corn%20flakes> .
+
+<http://data.linkedtv.eu/entity/048fe22b-4856-4d18-85bd-89c9f7d9cf49>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Amount ;
+      rdfs:label "thirteen" ;
+      linkedtv:hasConfidence
+              "0.0"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13223" ;
+      dc:source "wikimeta" ;
+      dc:type "AMOUNT" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=119080,120280>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/89a03541-81d4-402a-bdc8-8292d6bf86fe> ;
+      nsa:temporalEnd "120280"^^xsd:long ;
+      nsa:temporalStart "119080"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=101480,103720>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/1c3a0b11-95d0-43f5-8633-269ac4e36ee2> ;
+      nsa:temporalEnd "103720"^^xsd:long ;
+      nsa:temporalStart "101480"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/text/08ec4cb7-e48e-4c96-9b97-aa79ec029158>
+      a       str:String ;
+      str:label "Farmers. "^^xsd:string .
+
+<http://data.linkedtv.eu/text/3957c7b2-0f4f-4caa-a475-f2491b670be5#offset_2541_2549_Weetabix>
+      a       str:OffsetBasedString ;
+      str:beginIndex "2541"^^xsd:long ;
+      str:endIndex "2549"^^xsd:long ;
+      str:subString <http://data.linkedtv.eu/text/3957c7b2-0f4f-4caa-a475-f2491b670be5> .
+
+<http://data.linkedtv.eu/entity/59a98f7c-81f5-4c68-a1d4-67f562917750>
+      a       <http://data.linkedtv.eu/Entity> , nerd:Product ;
+      rdfs:label "steel arm" ;
+      linkedtv:hasConfidence
+              "0.158"^^xsd:float ;
+      linkedtv:hasRelevance
+              "0.5"^^xsd:float ;
+      dc:identifier "13233" ;
+      dc:source "opencalais" ;
+      dc:type "IndustryTerm" .
+
+<http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=89080,92480>
+      a       nsa:TemporalFragment , ma:MediaFragment ;
+      linkedtv:hasSubtitle
+              <http://data.linkedtv.eu/text/3f13412f-0997-423c-ade2-76543f91d021> ;
+      nsa:temporalEnd "92480"^^xsd:long ;
+      nsa:temporalStart "89080"^^xsd:long ;
+      nsa:temporalUnit "npt" ;
+      ma:isFragmentOf <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1> .
+
+<http://data.linkedtv.eu/annotation/1d0da9eb-b155-410e-9c4c-1adb2bd65420>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/b2741241-d6bb-4130-bf64-52aaa3ebac06> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.735Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/d729ae06-2a62-4d62-a819-7e68a5805f33> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/b2741241-d6bb-4130-bf64-52aaa3ebac06#offset_1784_1797_conveyor%20belt> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=123760,126520> .
+
+<http://data.linkedtv.eu/annotation/49930eea-a348-4c1a-bdc3-39f365f0f899>
+      a       oa:Annotation , opmv:Artifact ;
+      opmv:wasDerivedFrom <http://data.linkedtv.eu/text/3b6ea816-41a3-47dd-80b0-eabb8fd332b8> ;
+      opmv:wasGeneratedAt "2013-01-23T16:23:36.735Z"^^xsd:dateTime ;
+      opmv:wasGeneratedBy
+              [ a       opmv:Process ;
+                opmv:wasPerformedBy <http://data.linkedtv.eu/organization/EURECOM>
+              ] ;
+      oa:hasBody <http://data.linkedtv.eu/entity/8eb43979-2867-4e30-b5ac-9c85dccba8c3> ;
+      oa:hasTarget <http://data.linkedtv.eu/text/3b6ea816-41a3-47dd-80b0-eabb8fd332b8#offset_1887_1900_Lamier%20Kirogn> , <http://data.linkedtv.eu/media/092395a8-cf10-4724-9f26-7a3c51d4e6a1#t=130240,132600> .
+
+<http://data.linkedtv.eu/text/3b9c5c7d-6d21-484a-9fd3-a2353ec059ce>
+      a       str:String ;
+      str:label "People aren't like worms; "^^xsd:string .

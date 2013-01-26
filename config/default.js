@@ -33,7 +33,8 @@ module.exports= {
 	    	scene_ratio:999999 //we just want one picture, so we set it high
 	    },
 	    youtube:{
-	    	key:"AI39si6aIZMvZqgWXPIrbQ9E42ZgDmT04yF2ByDqzn8jJmHbf5eEKBJfz0HhrZBE5kTb5Yha_5X0_pBtOqCcuBuDMHI9jPcEqg"
+	    	//key:"AI39si6aIZMvZqgWXPIrbQ9E42ZgDmT04yF2ByDqzn8jJmHbf5eEKBJfz0HhrZBE5kTb5Yha_5X0_pBtOqCcuBuDMHI9jPcEqg"
+	    	key:"AIzaSyBw5KaKPmZIzqVYB3O0BfwPY3BeCWuX6Dw"
 	    }
 	}
 }

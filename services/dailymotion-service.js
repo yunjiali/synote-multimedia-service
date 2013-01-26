@@ -34,7 +34,7 @@ exports.generateThumbnail = function(id,videourl,time,callback){
 
 function getMetadata(videourl, callback)
 {
-    var metadataShort = true; // return short metadata or long metadata json
+    var metadataShort =true; // return short metadata or long metadata json
 	var videoid = utils.getVideoIDFromDailyMotionURL(videourl);
 	
 	if(videoid === undefined)
