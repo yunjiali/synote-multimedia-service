@@ -98,7 +98,7 @@ function getMetadata(videourl, callback)
 			formalObj.metadata.tags = ytObj.items[0].snippet.tags;
 			formalObj.metadata.channel = ytObj.items[0].snippet.channelId;
 			formalObj.metadata.category = ytObj.items[0].snippet.categoryId; //no category for dm
-			formalObj.metadata.duration = utils.convertYouTubeISO8601ToMillisec(ytObj.items[0].contentDetails.duration); //do it later to parse ISO8601 to seconds
+			formalObj.metadata.duration = utils.convertYouTubeISO8601ToSec(ytObj.items[0].contentDetails.duration); //do it later to parse ISO8601 to seconds
 			formalObj.metadata.language = null; //not applicable for youtube
 			
 			var cDate = new Date(ytObj.items[0].snippet.publishedAt);

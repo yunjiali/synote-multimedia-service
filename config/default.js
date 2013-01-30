@@ -26,7 +26,7 @@ module.exports= {
 	    	generateThumbnail:true,
 			getMetadata:true,
 			getDuration:true,
-	        isVideo':true,
+	        isVideo:true,
 			getSubtitleList:true,
 			lime13: true
 	    },
