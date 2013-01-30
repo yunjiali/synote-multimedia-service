@@ -106,11 +106,24 @@ function getMetadata(videourl, callback)
 				formalObj.metadata.creationDateMilliSeconds = cDate.getTime();
 			formalObj.metadata.creationDate = ytObj.items[0].snippet.publishedAt;
 			
-			var pDate = new Date(ytObj.items[0].recordingDetails.recordingDate);
+			//there is a known bug that recordingDetails is not available currenlty
+			//http://stackoverflow.com/questions/14553776/youtube-api-v3-recordingdetails-object-missing-in-the-response
+			var pDate= null;
+			if(ytObj.items[0].recordingDetails !== undefined)
+			{
+				pDate = new Date(ytObj.items[0].recordingDetails.recordingDate);
+				formalObj.metadata.publicationDate = ytObj.items[0].recordingDetails.recordingDate;
+			}
+			else
+			{
+				pDate = cDate;
+				formalObj.metadata.publicationDate =ytObj.items[0].snippet.publishedAt;
+			}
+			
 			if(metadataShort == false)
 				formalObj.metadata.publicationDateMilliSeconds = pDate.getTime();
-			formalObj.metadata.publicationDate = ytObj.items[0].recordingDetails.recordingDate;
 			
+				
 			if(metadataShort == false)
 				formalObj.metadata.isVideo = true;
 			if(metadataShort == false)

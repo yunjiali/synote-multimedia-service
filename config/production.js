@@ -1,10 +1,11 @@
+//production config for lslvm-yl2.ecs.soton.ac.uk
 module.exports= {	
 	server:{
 		name:"synote-multimedia-service",
 		http: {
 			protocol:"http",
-	    	hostname:"localhost",
-	    	port:8888
+	    	hostname:"lslvm-yl2.ecs.soton.ac.uk",
+	    	port:8000
 	    },
 	    log:{
 	    	level:"debug",
@@ -22,24 +23,23 @@ module.exports= {
 	    db:{
 	    	
 	    },
-	    api:{ //which apis are enabled
+	    api:{
 	    	generateThumbnail:true,
 			getMetadata:true,
 			getDuration:true,
 	        isVideo':true,
 			getSubtitleList:true,
-			lime13: true
+			lime13: false
 	    },
 	    ffmpeg:{
 	    
 	    },
 	    vlc:{
-	    	path:'/Applications/VLC.app/Contents/MacOS/VLC', //don't forget to change it if it's in Linux
+	    	path:'C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe', //don't forget to change it if it's in Linux
 	    	scene_ratio:999999 //we just want one picture, so we set it high
 	    },
 	    youtube:{
-	    	//key:"AI39si6aIZMvZqgWXPIrbQ9E42ZgDmT04yF2ByDqzn8jJmHbf5eEKBJfz0HhrZBE5kTb5Yha_5X0_pBtOqCcuBuDMHI9jPcEqg"
-	    	key:"AIzaSyBw5KaKPmZIzqVYB3O0BfwPY3BeCWuX6Dw"
+	    	key:"AI39si6aIZMvZqgWXPIrbQ9E42ZgDmT04yF2ByDqzn8jJmHbf5eEKBJfz0HhrZBE5kTb5Yha_5X0_pBtOqCcuBuDMHI9jPcEqg"
 	    }
 	}
 }
