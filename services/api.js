@@ -154,10 +154,12 @@ function generateThumbnail(req, res, next) {
 	   "description": string,
 	   "tags": [
 	     string
-	   ]
-	   "channel": string,
-	   "category": string, (only yt)
-	   "duration": string,
+	   ],
+	   "category": {
+	        label:string,
+	        uri:string
+	   } (for both yt and dm)
+	   "duration": string in seconds,
 	   "language": string, (only dm)
 	   "creationDate": datetime,
 	   "publicationDate": datetime,

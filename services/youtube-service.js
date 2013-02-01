@@ -10,6 +10,7 @@ var xml2js = require('xml2js');
 
 var vlcService = require('../services/vlc-service.js');
 var ytKey = config.youtube.key;
+var metadataShort =config.api.metadataShort;
 
 exports.getMetadata = getMetadata;
 
@@ -35,9 +36,7 @@ exports.generateThumbnail = function(id,videourl,time,callback){
 };
 
 function getMetadata(videourl, callback)
-{
-	var metadataShort =false;
-	
+{	
 	var videoid = utils.getVideoIDFromYoutubeURL(videourl);
 	
 	if(videoid === undefined)
@@ -96,14 +95,13 @@ function getMetadata(videourl, callback)
 			formalObj.metadata.title = ytObj.items[0].snippet.title;
 			formalObj.metadata.description = ytObj.items[0].snippet.description;
 			formalObj.metadata.tags = ytObj.items[0].snippet.tags;
-			formalObj.metadata.channel = ytObj.items[0].snippet.channelId;
-			formalObj.metadata.category = ytObj.items[0].snippet.categoryId; //no category for dm
 			formalObj.metadata.duration = utils.convertYouTubeISO8601ToSec(ytObj.items[0].contentDetails.duration); //do it later to parse ISO8601 to seconds
 			formalObj.metadata.language = null; //not applicable for youtube
 			
 			var cDate = new Date(ytObj.items[0].snippet.publishedAt);
-			if(metadataShort == false)
-				formalObj.metadata.creationDateMilliSeconds = cDate.getTime();
+			//Milliseconds
+			//if(metadataShort == false)
+			//	formalObj.metadata.creationDateMilliSeconds = cDate.getTime();
 			formalObj.metadata.creationDate = ytObj.items[0].snippet.publishedAt;
 			
 			//there is a known bug that recordingDetails is not available currenlty
@@ -120,8 +118,9 @@ function getMetadata(videourl, callback)
 				formalObj.metadata.publicationDate =ytObj.items[0].snippet.publishedAt;
 			}
 			
-			if(metadataShort == false)
-				formalObj.metadata.publicationDateMilliSeconds = pDate.getTime();
+			//Milliseconds
+			//if(metadataShort == false)
+			//	formalObj.metadata.publicationDateMilliSeconds = pDate.getTime();
 			
 				
 			if(metadataShort == false)
@@ -134,7 +133,76 @@ function getMetadata(videourl, callback)
 			formalObj.statistics.comments = ytObj.items[0].statistics.likeCount;
 			formalObj.statistics.favorites = ytObj.items[0].statistics.favoriteCount;
 			formalObj.statistics.ratings = parseInt(ytObj.items[0].statistics.likeCount)-parseInt(ytObj.items[0].statistics.dislikeCount);
-			return callback(err,formalObj);		
+			
+			getCategory(ytObj.items[0].snippet.categoryId, function(err,category){
+				formalObj.category = category;
+				return callback(err,formalObj);	
+			});
+				
+	  	});
+	});
+}
+
+function getCategory(categoryId,callback)
+{
+	var category = {};
+	var options = {
+			host:"www.googleapis.com",
+	        path:"/youtube/v3/videoCategories?id="+categoryId+"&key="+ytKey+"&part=id%2Csnippet"
+	}
+	
+	https.get(options,function(response){
+		
+		var result = '';
+		log.debug("Requesting metadata for Youtube video "+categoryId+". Response status:"+response.statusCode);
+		if(response.statusCode === 400)
+		{
+			var err = new restify.InternalError("Response code 400: Cannot get metadata from YouTube category "+categoryId);
+			return callback(err,category);
+		}
+		else if(response.statusCode === 401)
+		{
+			var err = new restify.InternalError("Response code 401: Authentication failed for YouTube category "+categoryId);
+			return callback(err,category);
+		}
+		else if(response.statusCode === 403)
+		{
+			var err = new restify.InternalError("Response code 403: Cannot get metadata from a private YouTube category "+categoryId);
+			return callback(err,category);
+		}
+		else if(response.statusCode === 404)
+		{
+			var err = new restify.InternalError("Response code 404: Cannot find YouTube category "+categoryId);
+			return callback(err,category);
+		}
+		else if(response.statusCode === 503)
+		{
+			var err = new restify.InternalError("Response code 503: Backend error when accessing category "+categoryId+". Please try again later.");
+			return callback(err,category);
+		}
+		
+		response.on('data', function(chunk){
+			//console.log(chunk.toString());
+			result += chunk;
+		});
+
+		response.on('end', function(err){
+			//TODO: CustomiseException
+			if(err != null)
+				return callback(err,result);
+			//log.debug(require('util').inspect(result, false, null));
+			var cObj = JSON.parse(result);
+			
+			if(cObj.items.length>0)
+			{
+				if(metadataShort == false)
+				{
+					category.id = categoryId;
+				}
+				category.label = cObj.items[0].snippet.title;
+				category.uri = "http://www.youtube.com/channels?feature=guide" //Should be "http://www.youtube.com/channel/"+result.items[0].snippet.channelId
+			}
+			return callback(err, category);
 	  	});
 	});
 }

@@ -8,6 +8,7 @@ var http = require('http');
 var https = require('https');
 
 var vlcService = require('../services/vlc-service.js');
+var metadataShort =config.api.metadataShort; // return short metadata or long metadata json
 
 exports.getMetadata = getMetadata;
 
@@ -34,14 +35,13 @@ exports.generateThumbnail = function(id,videourl,time,callback){
 
 function getMetadata(videourl, callback)
 {
-    var metadataShort =true; // return short metadata or long metadata json
 	var videoid = utils.getVideoIDFromDailyMotionURL(videourl);
 	
 	if(videoid === undefined)
 		return next(new restify.InvalidArgumentError("Cannot get the DailyMotion video id from videourl"));
 	var options = {
 			host:"api.dailymotion.com",
-	        path:"/video/"+videoid+"?fields=bookmarks_total,channel%2Ccomments_total%2Ccreated_time%2Cdescription%2Cduration%2Cid%2Clanguage%2Cratings_total%2Ctags%2Ctaken_time%2Ctitle%2Cviews_total%2Cthumbnail_medium_url"     
+	        path:"/video/"+videoid+"?fields=bookmarks_total,channel.description%2Cchannel.id%2Cchannel.name%2Ccomments_total%2Ccreated_time%2Cdescription%2Cduration%2Cid%2Clanguage%2Cratings_total%2Ctags%2Ctaken_time%2Ctitle%2Cviews_total%2Cthumbnail_medium_url"     
 	}
 	
 	https.get(options,function(response){
@@ -87,18 +87,25 @@ function getMetadata(videourl, callback)
 			formalObj.metadata.title = dmObj.title;
 			formalObj.metadata.description = dmObj.description;
 			formalObj.metadata.tags = dmObj.tags;
-			formalObj.metadata.channel = dmObj.channel;
-			formalObj.metadata.category = null; //no category for dm
+			formalObj.metadata.category = {};
+			if(metadataShort == false)
+			{
+				formalObj.metadata.category.id = dmObj["channel.id"];
+				formalObj.metadata.category.description = dmObj["channel.description"];
+			}
+			formalObj.metadata.category.label = dmObj["channel.name"];
+			formalObj.metadata.category.uri = "http://www.dailymotion.com/channel/"+dmObj["channel.id"];
+			
 			formalObj.metadata.duration = dmObj.duration;
 			formalObj.metadata.language = dmObj.language;
 			
-			if(metadataShort == false)
-				formalObj.metadata.creationDateMilliSeconds = dmObj.created_time*1000;
+			//if(metadataShort == false)
+			//	formalObj.metadata.creationDateMilliSeconds = dmObj.created_time*1000;
 			var cDate = new Date(dmObj.created_time*1000);
 			formalObj.metadata.creationDate = cDate.toString();
 			
-			if(metadataShort == false)
-				formalObj.metadata.publicationDateMilliSeconds = dmObj.taken_time*1000;
+			//if(metadataShort == false)
+			//	formalObj.metadata.publicationDateMilliSeconds = dmObj.taken_time*1000;
 			var pDate = new Date(dmObj.taken_time*1000)
 			formalObj.metadata.publicationDate = pDate.toString();
 			
