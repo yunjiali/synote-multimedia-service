@@ -24,15 +24,23 @@ var lime13 = require('../services/lime13.js');
 exports.init = function()
 {
 	server.use(restify.queryParser());
-	server.get('/api/generateThumbnail', generateThumbnail);
-	server.get('/api/getMetadata',getMetadata);
-	server.get('/api/getDuration',getDuration);
-	server.get('/api/isVideo',isVideo);
-	server.get('/api/getSubtitleList',getSubtitleList)
+	if(config.api.generateThumbnail == true)
+		server.get('/api/generateThumbnail', generateThumbnail);
+	if(config.api.getMetadata == true)
+		server.get('/api/getMetadata',getMetadata);
+	if(config.api.getDuration == true)
+		server.get('/api/getDuration',getDuration);
+	if(config.api.isVideo == true)
+		server.get('/api/isVideo',isVideo);
+	if(config.api.getSubtitleList == true)
+		server.get('/api/getSubtitleList',getSubtitleList);
 	//server.head('/api/:name', respond);
 	
-	//for LIME13 experiment
-	//server.get('/api/lime13/generateAll', generateAll)
+	if(config.api.lime13 == true)
+	{
+		server.get('/api/lime13/generateAll', generateAll);
+		server.get('/api/lime13/mfStat', mfStat);
+	}
 }
 /*
  * Generate thumbnail picture for a video
@@ -137,6 +145,32 @@ function generateThumbnail(req, res, next) {
  * Get the metadata of the video or audio resource. The metadata we can get depends on the resource of the multimedia.
  * For online multimedia files, we use ffmpeg, and for Youtube Videos, we use the youtube api
  * params: videourl
+ * example metadata json:
+ * {
+	 "id": string,
+	 "metadata": {
+	   "title": string,
+	   "description": string,
+	   "tags": [
+	     string
+	   ],
+	   "category": {
+	        label:string,
+	        uri:string
+	   } (for both yt and dm)
+	   "duration": string in seconds,
+	   "language": string, (only dm)
+	   "creationDate": datetime,
+	   "publicationDate": datetime,
+	 },
+	 "statistics": {
+	   "views": unsigned long,
+	   "comments": unsigned long
+	   "favorites": unsigned long,
+	   "ratings": unsigned long,
+	 }
+   }
+ *
  */
 function getMetadata(req,res,next)
 {
@@ -307,6 +341,14 @@ function generateAll(req,res,next)
 			return next(err);
 		return res.send("success!");
 	});
+}
+
+/*
+ * Generate mfStat data
+ */
+function mfStat(req,res,next)
+{
+
 }
 /*
  * s: start time
