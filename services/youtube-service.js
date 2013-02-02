@@ -129,7 +129,7 @@ function getMetadata(videourl, callback)
 				formalObj.metadata.thumbnail = ytObj.items[0].snippet.thumbnails.default.url;
 			
 			formalObj.statistics = {};
-			formalObj.statistics.views = ytObj.items[0].statistics.viewsCount;
+			formalObj.statistics.views = ytObj.items[0].statistics.viewCount;
 			formalObj.statistics.comments = ytObj.items[0].statistics.likeCount;
 			formalObj.statistics.favorites = ytObj.items[0].statistics.favoriteCount;
 			formalObj.statistics.ratings = parseInt(ytObj.items[0].statistics.likeCount)-parseInt(ytObj.items[0].statistics.dislikeCount);
