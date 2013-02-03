@@ -143,3 +143,14 @@ function isVideoJSON(metadata)
 {
 	return metadata.isVideo;
 }
+
+/*
+ * Get available subtitle list from the multimedia file
+ * callback(err,subtitleList)
+ */
+exports.getSubtitleList = function(videourl,callback){
+ 	//temperorily return empty list
+ 	var sl = {};
+ 	sl.list = [];
+ 	callback(null,sl);
+}

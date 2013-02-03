@@ -15,7 +15,8 @@ var http = require('http');
 
 var ffmpegService = require('../services/ffmpeg-service.js');
 var youtubeService = require('../services/youtube-service.js');
-
+var dailymotionService = require ('../services/dailymotion-service.js');
+var lime13 = require('../services/lime13.js');
 
 /* params:
  * server: the restify serve instance
@@ -23,11 +24,23 @@ var youtubeService = require('../services/youtube-service.js');
 exports.init = function()
 {
 	server.use(restify.queryParser());
-	server.get('/api/generateThumbnail', generateThumbnail);
-	server.get('/api/getMetadata',getMetadata);
-	server.get('/api/getDuration',getDuration);
-	server.get('/api/isVideo',isVideo);
+	if(config.api.generateThumbnail == true)
+		server.get('/api/generateThumbnail', generateThumbnail);
+	if(config.api.getMetadata == true)
+		server.get('/api/getMetadata',getMetadata);
+	if(config.api.getDuration == true)
+		server.get('/api/getDuration',getDuration);
+	if(config.api.isVideo == true)
+		server.get('/api/isVideo',isVideo);
+	if(config.api.getSubtitleList == true)
+		server.get('/api/getSubtitleList',getSubtitleList);
 	//server.head('/api/:name', respond);
+	
+	if(config.api.lime13 == true)
+	{
+		server.get('/api/lime13/generateAll', generateAll);
+		server.get('/api/lime13/mfStat', mfStat);
+	}
 }
 /*
  * Generate thumbnail picture for a video
@@ -103,6 +116,18 @@ function generateThumbnail(req, res, next) {
 		});
 		
 	}
+	else if(utils.isDailyMotionURL(videourl,true))
+	{
+		dailymotionService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+			
+			if(err != null)
+				return next(err);
+			else if(time === -1) //a picture from youtube
+				return res.send({thumbnail_url:thumbnail_file});
+			else
+				return res.send({thumbnail_url:server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file});		
+		});
+	}
 	else
 	{
 		ffmpegService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
@@ -120,6 +145,32 @@ function generateThumbnail(req, res, next) {
  * Get the metadata of the video or audio resource. The metadata we can get depends on the resource of the multimedia.
  * For online multimedia files, we use ffmpeg, and for Youtube Videos, we use the youtube api
  * params: videourl
+ * example metadata json:
+ * {
+	 "id": string,
+	 "metadata": {
+	   "title": string,
+	   "description": string,
+	   "tags": [
+	     string
+	   ],
+	   "category": {
+	        label:string,
+	        uri:string
+	   } (for both yt and dm)
+	   "duration": string in seconds,
+	   "language": string, (only dm)
+	   "creationDate": datetime,
+	   "publicationDate": datetime,
+	 },
+	 "statistics": {
+	   "views": unsigned long,
+	   "comments": unsigned long
+	   "favorites": unsigned long,
+	   "ratings": unsigned long,
+	 }
+   }
+ *
  */
 function getMetadata(req,res,next)
 {
@@ -140,6 +191,14 @@ function getMetadata(req,res,next)
 	if(utils.isYouTubeURL(videourl, true))
 	{
 		youtubeService.getMetadata(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+	else if(utils.isDailyMotionURL(videourl, true))
+	{
+		dailymotionService.getMetadata(videourl,function(err,metadata){
 			if(err != null)
 				return next(err);
 			return res.send(metadata);
@@ -183,6 +242,14 @@ function getDuration(req,res,next)
 			return res.send(duration);
 		});
 	}
+	if(utils.isDailyMotionURL(videourl, true))
+	{
+		dailymotionService.getDuration(videourl,function(err,duration){
+			if(err != null)
+				return next(err);
+			return res.send(duration);
+		});
+	}
 	else
 	{
 		ffmpegService.getDuration(videourl,function(err,duration){
@@ -211,7 +278,7 @@ function isVideo(req,res,next)
 		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
 	}
 	
-	if(utils.isYouTubeURL(videourl, true))
+	if(utils.isYouTubeURL(videourl, true) || utils.isDailyMotionURL(videourl,true))
 	{
 		return res.send({isVideo:true});
 	}
@@ -225,6 +292,64 @@ function isVideo(req,res,next)
 	}
 }
 
+function getSubtitleList(req,res,next)
+{
+	var videourlEncoded = req.query.videourl;
+	
+	if(videourlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("videourl is missing!"));
+	}
+	
+	var videourl = decodeURIComponent(videourlEncoded);
+	
+	if(utils.isValidURL(videourl))
+	{
+		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
+	}
+	
+	if(utils.isYouTubeURL(videourl, true))
+	{
+		youtubeService.getSubtitleList(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+	else if(utils.isDailyMotionURL(videourl, true))
+	{
+		dailymotionService.getSubtitleList(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+	else
+	{
+		ffmpegService.getSubtitleList(videourl,function(err,metadata){
+			if(err != null)
+				return next(err);
+			return res.send(metadata);
+		});
+	}
+}
+
+function generateAll(req,res,next)
+{
+	lime13.generateAll(function(err){
+		if(err != null)
+			return next(err);
+		return res.send("success!");
+	});
+}
+
+/*
+ * Generate mfStat data
+ */
+function mfStat(req,res,next)
+{
+
+}
 /*
  * s: start time
  * e: end time
