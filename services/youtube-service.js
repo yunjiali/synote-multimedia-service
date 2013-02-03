@@ -129,13 +129,15 @@ function getMetadata(videourl, callback)
 				formalObj.metadata.thumbnail = ytObj.items[0].snippet.thumbnails.default.url;
 			
 			formalObj.statistics = {};
-			formalObj.statistics.views = ytObj.items[0].statistics.viewsCount;
+			formalObj.statistics.views = ytObj.items[0].statistics.viewCount;
 			formalObj.statistics.comments = ytObj.items[0].statistics.likeCount;
 			formalObj.statistics.favorites = ytObj.items[0].statistics.favoriteCount;
 			formalObj.statistics.ratings = parseInt(ytObj.items[0].statistics.likeCount)-parseInt(ytObj.items[0].statistics.dislikeCount);
 			
 			getCategory(ytObj.items[0].snippet.categoryId, function(err,category){
-				formalObj.category = category;
+			    log.debug(category);
+				formalObj.metadata.category = {};
+				formalObj.metadata.category = category;
 				return callback(err,formalObj);	
 			});
 				
@@ -190,10 +192,10 @@ function getCategory(categoryId,callback)
 			//TODO: CustomiseException
 			if(err != null)
 				return callback(err,result);
-			//log.debug(require('util').inspect(result, false, null));
+			log.debug(require('util').inspect(result, false, null));
 			var cObj = JSON.parse(result);
 			
-			if(cObj.items.length>0)
+			if(cObj.items !== undefined && cObj.items.length>0)
 			{
 				if(metadataShort == false)
 				{
@@ -276,19 +278,27 @@ exports.getDuration = function(videourl, callback){
 				//log.debug(xml);
 				var sl = {};
 				sl.list = new Array();
-				var track = xml.transcript_list.track
-				var total = track.length;
-				sl.total = total;
-				for(var i =0;i<total;i++)
+				var track = xml.transcript_list.track;
+				
+				if(track !== undefined)
 				{
-					var trackName = track[i].$.name;
-					var language = track[i].$.lang_code;
-					sl.list[i] = {};
-					sl.list[i].language = language;
-					sl.list[i].url = "http://www.youtube.com/api/timedtext?v="+videoid+"&fmt=srt&lang="+language+"&name="+trackName;
+					var total = track.length;
+					sl.total = total;
+					for(var i =0;i<total;i++)
+					{
+						var trackName = track[i].$.name;
+						var language = track[i].$.lang_code;
+						sl.list[i] = {};
+						sl.list[i].language = language;
+						sl.list[i].url = "http://www.youtube.com/api/timedtext?v="+videoid+"&fmt=srt&lang="+language+"&name="+trackName;
+					}
+					log.debug(require('util').inspect(sl, false, null));
 				}
-				log.debug(require('util').inspect(sl, false, null));
-				return callback(err,sl);	
+				else
+				{
+					sl.total = 0;
+				}	
+				return callback(err,sl);
 			});	
 	  	});
 	});
