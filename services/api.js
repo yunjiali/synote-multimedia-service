@@ -348,7 +348,11 @@ function generateAll(req,res,next)
  */
 function mfStat(req,res,next)
 {
-
+	lime13.mfStat(function(err){
+		if(err != null)
+			return next(err);
+		return res.send("success!");
+	});
 }
 /*
  * s: start time
