@@ -6,9 +6,10 @@ var log = Common.log,
 	
 var fs = require('fs');
 var lazy=require("lazy");
+var async=require("async");
 require('date-utils');
 
-var csvSeparator = "^^^^^^^^"
+var csvSeparator = "\t"
 
 var dailymotionService = require('../services/dailymotion-service.js');
 
@@ -31,10 +32,10 @@ exports.generateAll = function(callback)
 		callback(null);
 		//log.debug("lazy callback");
 		var csv = fs.createWriteStream('tests/dailymotion/metadata.csv', {'flags': 'a'});
-		var contentHeader = "id^^^^^^^^title^^^^^^^^description^^^^^^^^tags^^^^^^^^tagsNo^^^^^^^^channel^^^^^^^^category^^^^^^^^"+
-						"duration^^^^^^^^language^^^^^^^^creationDate^^^^^^^^"+
-	             		"creationYear^^^^^^^^creationMonth^^^^^^^^creationDay^^^^^^^^publicationDate^^^^^^^^publicationYear^^^^^^^^publicationMonth^^^^^^^^publicationDay^^^^^^^^"+
-	              		"views^^^^^^^^comments^^^^^^^^favorites^^^^^^^^ratings\r\n";
+		var contentHeader = "id"+csvSeparator+"title"+csvSeparator+"description"+csvSeparator+"tags"+csvSeparator+"tagsNo"+csvSeparator+"channel"+csvSeparator+"category"+csvSeparator+""+
+						"duration"+csvSeparator+"language"+csvSeparator+"creationDate"+csvSeparator+""+
+	             		"creationYear"+csvSeparator+"creationMonth"+csvSeparator+"creationDay"+csvSeparator+"publicationDate"+csvSeparator+"publicationYear"+csvSeparator+"publicationMonth"+csvSeparator+"publicationDay"+csvSeparator+""+
+	              		"views"+csvSeparator+"comments"+csvSeparator+"favorites"+csvSeparator+"ratings\r\n";
 	    csv.write(contentHeader);
 	    //var filenamecsv="metadata.csv";
 	        
@@ -101,4 +102,78 @@ exports.generateAll = function(callback)
 	{
 		return callback("Cannot find the file");
 	}
+}
+
+/*
+ * Generate media fragment statistical data from json files
+ */
+exports.mfStat = function(callback){
+	var dir = "tests/dailymotion/nerdjson/";
+	var csv = fs.createWriteStream('tests/lime13/mf.csv', {'flags': 'a'});
+	var contentHeader = "videoid"+csvSeparator+"idEntity"+csvSeparator+"label"+csvSeparator+"startChar"+csvSeparator+"endChar"+csvSeparator+
+			"extractorType"+csvSeparator+"nerdType"+csvSeparator+"uri"+csvSeparator+"confidence"+csvSeparator+
+			"relevance"+csvSeparator+"extractor"+csvSeparator+"startNPT"+csvSeparator+"endNPT\r\n";
+	csv.write(contentHeader);
+	var len=0;
+	var q = async.queue(function (task, callback) {
+    	var text = fs.readFileSync(dir+task.filename,'utf-8');
+	    log.debug(task.filename);
+    	//if (err) 
+			//log.debug(err);
+    	eval("var result = "+text); //sometimes there the json includes some special characters that will lead to error
+    	if(result !== undefined)
+    	{
+    		len += result.length;
+    		for(var i=0;i<result.length;i++)
+    		{
+    			var content = "";
+    			content+=task.filename.replace(".json","")+csvSeparator; //write the video id
+    			content+=result[i].idEntity !== undefined?result[i].idEntity:"null";
+    			content+=csvSeparator;
+    			content+=result[i].label!== undefined?result[i].label.replace(/(\r\n|\n|\r)/gm," "):"null";
+    			content+=csvSeparator;
+    			content+=result[i].startChar!== undefined?result[i].startChar:"null";
+    			content+=csvSeparator;
+    			content+=result[i].endChar!== undefined?result[i].endChar:"null";
+    			content+=csvSeparator;
+    			content+=result[i].extractorType!== undefined?result[i].extractorType:"null";
+    			content+=csvSeparator;
+    			content+=result[i].nerdType!== undefined?result[i].nerdType:"null";
+    			content+=csvSeparator;
+    			content+=result[i].uri!== undefined?result[i].uri:"null";
+    			content+=csvSeparator;
+    			content+=result[i].confidence!== undefined?result[i].confidence:"null";
+    			content+=csvSeparator;
+    			content+=result[i].relevance!== undefined?result[i].relevance :"null";
+    			content+=csvSeparator;
+    			content+=result[i].extractor!== undefined?result[i].extractor:"null";
+    			content+=csvSeparator;
+    			content+=result[i].startNPT!== undefined?result[i].startNPT :"null";
+    			content+=csvSeparator;
+    			content+=result[i].endNPT!== undefined?result[i].endNPT:"null";
+    			content+="\r\n";
+    			csv.write(content);
+    		}
+    	}
+    	log.debug("len:"+len);
+	   	callback();
+	}, 1); 
+	
+	fs.readdir(dir,function(err,files){
+    	if (err) 
+    		return callback(err);
+    	callback(null);
+    	for(var j=0;j<files.length;j++)
+    	{
+    		//console.log(files[j]);
+    		q.push({filename:files[j]},function(err){
+    			//log.debug("Reading file "+files[j]);
+    			if(err!= null)
+    			{
+    				log.debug("ERROR!"+err);
+    			}
+    		});
+    	}
+	});
+	return;
 }
