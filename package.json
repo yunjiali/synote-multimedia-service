@@ -1,6 +1,9 @@
 {
   "name": "synote-multimedia-service",
-  "version": "0.1.5",
+  "version": "0.2",
+  "scripts":{
+  	"start":"node synote-multimedia-service.js"
+  },
   "description":"Providing many multimedia services for Synote",
   "dependencies": {
     "fluent-ffmpeg": ">=1.2.0",
@@ -12,7 +15,8 @@
     "xml2js":">=0.2.2",
     "sax":">=0.5.1",
     "date-utils":">=1.2.12",
-    "lazy":">=1.0.8"
+    "lazy":">=1.0.8",
+    "async":">=0.2.3"
   },
   "author": {
     "name": "Yunjia Li",
