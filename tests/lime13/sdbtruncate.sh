@@ -1,1 +1,0 @@
-/Users/user/projects/jena-sdb-1.3.5/bin/sdbtruncate --sdb="/Users/user/projects/NERD-Synote/web-app/sdb-mysql-innodb-dev.ttl" --confirm

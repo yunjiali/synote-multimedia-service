@@ -16,7 +16,6 @@ var http = require('http');
 var ffmpegService = require('../services/ffmpeg-service.js');
 var youtubeService = require('../services/youtube-service.js');
 var dailymotionService = require ('../services/dailymotion-service.js');
-var lime13 = require('../services/lime13.js');
 
 /* params:
  * server: the restify serve instance
@@ -35,12 +34,6 @@ exports.init = function()
 	if(config.api.getSubtitleList == true)
 		server.get('/api/getSubtitleList',getSubtitleList);
 	//server.head('/api/:name', respond);
-	
-	if(config.api.lime13 == true)
-	{
-		server.get('/api/lime13/generateAll', generateAll);
-		server.get('/api/lime13/mfStat', mfStat);
-	}
 }
 /*
  * Generate thumbnail picture for a video
@@ -334,26 +327,6 @@ function getSubtitleList(req,res,next)
 	}
 }
 
-function generateAll(req,res,next)
-{
-	lime13.generateAll(function(err){
-		if(err != null)
-			return next(err);
-		return res.send("success!");
-	});
-}
-
-/*
- * Generate mfStat data
- */
-function mfStat(req,res,next)
-{
-	lime13.mfStat(function(err){
-		if(err != null)
-			return next(err);
-		return res.send("success!");
-	});
-}
 /*
  * s: start time
  * e: end time
