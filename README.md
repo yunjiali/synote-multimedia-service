@@ -1,54 +1,10 @@
 synote-multimedia-service
 ==========================
-This programme will provide the following services for Synote. But it could also been used by other applications through the apis provided
-by this service
+Expriment branch.
 
-Generate thumbnail pictures for video resources. All the resources will be accessible through URL on the server.
+This branch has some test programmes for Lime13 experiments.
 
-* RESTful APIs to generate thumbnail pictures from online multimedia resources, including video resources from Youtube
-* Host the thumbnail pictures
-* RESTful APIs get the metadata of the audio or video resources 
-* RESTful APIs get the duration of the audio or video resources
-* RESTful APIs to get if a resource is video or audio     
-
-Up coming features:
-
-* Get caption from youtube
-* Get technology description of the multimedia resources, such as framerate, bitrate, etc.
-* Automatic returning the title and description for YouTube video
-* And other secret functions :=)
-
-Other applications used in this service
-----------
-* ffmpeg
-* vlc, VideoLAN
-* node-fluent-ffmpeg https://github.com/schaermu/node-fluent-ffmpeg
-
-Versioning
-----------
-
-Synote is maintained under the Semantic Versioning, so the version will be numbered in following format:
-
-`<major>.<minor>.<patch>`
-
-For more information on SemVer, please visit http://semver.org/.
-
-
-Authors
--------
-
-**Yunjia Li (Leading Developer)**
-
-+ http://www.ecs.soton.ac.uk/people/yl2
-+ http://afterglowlee.blogspot.com
-
-**Dr Mike Wald (Pinciple Investigator)**
-
-+ http://www.ecs.soton.ac.uk/people/mw
-
-**E.A. Draffan (Project Manager)**
-
-+ http://www.ecs.soton.ac.uk/people/ead
+This branch will NOT merged with master anymore.
 
 Copyright
 ---------------------
