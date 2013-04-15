@@ -29,7 +29,7 @@ module.exports= {
 			getDuration:true,
 	        isVideo:true,
 			getSubtitleList:true,
-			lime13: false,
+			getSubtitleSRT:true,
 			metadataShort: false
 	    },
 	    ffmpeg:{

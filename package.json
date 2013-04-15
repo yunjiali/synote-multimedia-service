@@ -16,7 +16,11 @@
     "sax":">=0.5.1",
     "date-utils":">=1.2.12",
     "lazy":">=1.0.8",
-    "async":">=0.2.3"
+    "async":">=0.2.3",
+    "ap": "~0.1.0",
+    "iterators": "~0.1.0",
+    "xtend": "~1.0.3",
+    "node-uuid":">=1.4.0"
   },
   "author": {
     "name": "Yunjia Li",
