@@ -18,6 +18,10 @@ Up coming features:
 * Automatic returning the title and description for YouTube video
 * And other secret functions :=)
 
+Server Setup
+----------
+See https://github.com/yunjiali/synote-multimedia-service/wiki/Server-setup
+
 Other applications used in this service
 ----------
 * ffmpeg

@@ -16,7 +16,7 @@ var http = require('http');
 var ffmpegService = require('../services/ffmpeg-service.js');
 var youtubeService = require('../services/youtube-service.js');
 var dailymotionService = require ('../services/dailymotion-service.js');
-var lime13 = require('../services/lime13.js');
+var subtitleService = require('../services/subtitle-service.js');
 
 /* params:
  * server: the restify serve instance
@@ -34,13 +34,9 @@ exports.init = function()
 		server.get('/api/isVideo',isVideo);
 	if(config.api.getSubtitleList == true)
 		server.get('/api/getSubtitleList',getSubtitleList);
+	if(config.api.getSubtitleSRT == true)
+		server.get('/api/getSubtitleSRT',getSubtitleSRT);
 	//server.head('/api/:name', respond);
-	
-	if(config.api.lime13 == true)
-	{
-		server.get('/api/lime13/generateAll', generateAll);
-		server.get('/api/lime13/mfStat', mfStat);
-	}
 }
 /*
  * Generate thumbnail picture for a video
@@ -334,26 +330,40 @@ function getSubtitleList(req,res,next)
 	}
 }
 
-function generateAll(req,res,next)
+/*
+ * subtitleurl: the url of the subtitle
+ * fmt: the data structure of the return json, default is "json"
+ * 
+ */
+
+function getSubtitleSRT(req,res,next)
 {
-	lime13.generateAll(function(err){
+	var subtitleurlEncoded = req.query.subtitleurl;
+	
+	log.debug("getSubtitleSRT");
+	if(subtitleurlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("subtitleurl is missing!"));
+	}
+	
+	var subtitleurl = decodeURIComponent(subtitleurlEncoded);
+	
+	if(utils.isValidURL(subtitleurl))
+	{
+		return next(new restify.InvalidArgumentError("subtitleurl parameter is not a valid url!"));
+	}
+
+	var fmt = req.query.fmt;
+	if(fmt === undefined)
+		fmt = "json"
+	
+	subtitleService.getSubtitleSRT(subtitleurl,fmt, function(err,data){
 		if(err != null)
 			return next(err);
-		return res.send("success!");
+		return res.send(data);
 	});
 }
 
-/*
- * Generate mfStat data
- */
-function mfStat(req,res,next)
-{
-	lime13.mfStat(function(err){
-		if(err != null)
-			return next(err);
-		return res.send("success!");
-	});
-}
 /*
  * s: start time
  * e: end time
