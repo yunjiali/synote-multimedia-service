@@ -9,7 +9,7 @@ var https = require('https');
 var xml2js = require('xml2js');
 
 var vlcService = require('../services/vlc-service.js');
-var ytKey = config.youtube.key;
+var ytKey = require('../lib/keys').youtube;
 var metadataShort =config.api.metadataShort;
 
 exports.getMetadata = getMetadata;

@@ -17,6 +17,8 @@ var ffmpegService = require('../services/ffmpeg-service.js');
 var youtubeService = require('../services/youtube-service.js');
 var dailymotionService = require ('../services/dailymotion-service.js');
 var subtitleService = require('../services/subtitle-service.js');
+var nerdService = require('../services/nerd-service.js');
+
 
 /* params:
  * server: the restify serve instance
@@ -36,6 +38,8 @@ exports.init = function()
 		server.get('/api/getSubtitleList',getSubtitleList);
 	if(config.api.getSubtitleSRT == true)
 		server.get('/api/getSubtitleSRT',getSubtitleSRT);
+	if(config.api.nerdifySRT == true)
+		server.get('/api/nerdifySRT',nerdifySRT);
 	//server.head('/api/:name', respond);
 }
 /*
@@ -358,6 +362,56 @@ function getSubtitleSRT(req,res,next)
 		fmt = "json"
 	
 	subtitleService.getSubtitleSRT(subtitleurl,fmt, function(err,data){
+		if(err != null)
+			return next(err);
+		return res.send(data);
+	});
+}
+
+/*
+ * NERDify SRT file through nerd
+ * subtitleurl: the url of the subtitle
+ * fmt: the data format of the return json, default is "json", could also be "ttl"
+ * calback(err,data)
+ *
+ * if fmt="ttl", we will use RDFizator to generate the RDF serilsation. In this case, we need two more parameters:
+ * nm: the encoded namespace URI for the annotations
+ * videourl: the encoded URI of the video
+ *
+ * return: the json or ttl data
+ */
+
+function nerdifySRT(req,res,next)
+{
+	var subtitleurlEncoded = req.query.subtitleurl;
+	
+	log.debug("nerdifySRT");
+	if(subtitleurlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("subtitleurl is missing!"));
+	}
+	
+	var subtitleurl = decodeURIComponent(subtitleurlEncoded);
+	
+	if(utils.isValidURL(subtitleurl))
+	{
+		return next(new restify.InvalidArgumentError("subtitleurl parameter is not a valid url!"));
+	}
+
+	var fmt = req.query.fmt;
+	if(fmt === undefined)
+		fmt = "json"
+	
+	var nm = req.query.fmt;
+	
+	var videourl = decodeURIComponent(req.query.videourl);
+	
+	if(utils.isValidURL(videourl))
+	{
+		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
+	}
+	
+	nerdService.nerdifySRT(subtitleurl,fmt, nm, videourl, function(err,data){
 		if(err != null)
 			return next(err);
 		return res.send(data);
