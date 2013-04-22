@@ -402,19 +402,32 @@ function nerdifySRT(req,res,next)
 	if(fmt === undefined)
 		fmt = "json"
 	
-	var nm = req.query.fmt;
-	
-	var videourl = decodeURIComponent(req.query.videourl);
-	
-	if(utils.isValidURL(videourl))
-	{
-		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
-	}
-	
-	nerdService.nerdifySRT(subtitleurl,fmt, nm, videourl, function(err,data){
+	nerdService.nerdifySRT(subtitleurl, function(err,srt, jdata){
 		if(err != null)
 			return next(err);
-		return res.send(data);
+		if(fmt == "json")
+			return res.send(jdata);
+		else if(fmt == "ttl")
+		{
+			var nm = req.query.nm;
+	
+			var videourl = decodeURIComponent(req.query.videourl);
+			
+			if(nm === undefined)
+			{
+				return next(new restify.InvalidArgumentError("nm parameter is missing!"));
+			}
+			else if(videourl === undefined)
+			{
+				return next(new restify.InvalidArgumentError("videourl parameter is missing!"));
+			}	
+			
+			nerdService.generateRDF(srt, jdata, nm, videourl, function(errttl, ttl){
+				if(errttl != null)
+					return next(errttl);
+				res.send(ttl);
+			});		
+		}
 	});
 }
 

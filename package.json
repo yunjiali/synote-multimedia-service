@@ -20,7 +20,9 @@
     "ap": "~0.1.0",
     "iterators": "~0.1.0",
     "xtend": "~1.0.3",
-    "node-uuid":">=1.4.0"
+    "node-uuid":">=1.4.0",
+    "needle":">=0.4.8",
+    "async":">=0.2.7"
   },
   "author": {
     "name": "Yunjia Li",
