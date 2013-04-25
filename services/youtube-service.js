@@ -9,7 +9,8 @@ var https = require('https');
 var xml2js = require('xml2js');
 
 var vlcService = require('../services/vlc-service.js');
-var ytKey = require('../lib/keys').youtube;
+var keys = require('../lib/keys.js').keys;
+var ytKey = keys.youtube;
 var metadataShort =config.api.metadataShort;
 
 exports.getMetadata = getMetadata;
@@ -38,7 +39,7 @@ exports.generateThumbnail = function(id,videourl,time,callback){
 function getMetadata(videourl, callback)
 {	
 	var videoid = utils.getVideoIDFromYoutubeURL(videourl);
-	
+	console.log("key:"+ytKey);
 	if(videoid === undefined)
 		return next(new restify.InvalidArgumentError("Cannot get the YouTube video id from videourl"));
 	var options = {

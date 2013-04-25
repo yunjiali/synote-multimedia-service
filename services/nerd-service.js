@@ -60,7 +60,6 @@ exports.nerdifySRT = function(subtitleurl, callback)
 			if(err != null)
 				return callback(err,result);
 			
-			console.log(result);	
 			nerd.annotate(
 				'http://nerd.eurecom.fr/api/', 
 	            API_KEY, 
@@ -91,7 +90,6 @@ exports.generateRDF = function(srtdata, jdata, nm, videourl, callbackmain)
 	var fsrt = "./tmp/"+filename+".srt";
 	var fjson = "./tmp/"+filename+".json";
 	var fttl = "./tmp/"+filename+".ttl";
-	
 	if(!fs.existsSync(fttl))
 	{
 		//if file doesn't exist
@@ -118,7 +116,7 @@ exports.generateRDF = function(srtdata, jdata, nm, videourl, callbackmain)
 					});
 	        	},
 	        	function(callback){
-	        		var child = exec('java -jar ./scripts/RDFizator/RDFizator.jar '+fjson+' -nm '+nm+' -videourl '+videourl,
+	        		var child = exec('java -jar ./scripts/RDFizator/RDFizator.jar '+fjson+' -videourl '+videourl+' -nm '+nm,
 						function (errRDFizator, stdout, stderr)
 						{
 						    log.debug('stdout: ' + stdout);
