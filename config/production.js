@@ -9,7 +9,10 @@ module.exports= {
 	    },
 	    log:{
 	    	level:"debug",
-	    	type:"stream"
+	    	type:"rotating-file",
+	    	path:'./logs/bunyan.log',
+	    	period:'1d',
+	    	count: 256
 	    },
 	    node_static:{
 	    	root:"./static",
@@ -30,6 +33,7 @@ module.exports= {
 	        isVideo:true,
 			getSubtitleList:true,
 			getSubtitleSRT:true,
+			nerdifySRT:true,
 			metadataShort: false
 	    },
 	    ffmpeg:{
@@ -38,9 +42,6 @@ module.exports= {
 	    vlc:{
 	    	path:'C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe', //don't forget to change it if it's in Linux
 	    	scene_ratio:999999 //we just want one picture, so we set it high
-	    },
-	    youtube:{
-	    	key:"AIzaSyBw5KaKPmZIzqVYB3O0BfwPY3BeCWuX6Dw"
 	    }
 	}
 }

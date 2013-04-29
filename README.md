@@ -5,18 +5,19 @@ by this service
 
 Generate thumbnail pictures for video resources. All the resources will be accessible through URL on the server.
 
-* RESTful APIs to generate thumbnail pictures from online multimedia resources, including video resources from Youtube
+* RESTful APIs to generate thumbnail pictures from online multimedia resources, including video resources from YouTube
 * Host the thumbnail pictures
-* RESTful APIs get the metadata of the audio or video resources 
-* RESTful APIs get the duration of the audio or video resources
+* RESTful APIs get the metadata of the audio or video resources, YouTube and Dailymotion video 
+* RESTful APIs get the duration of the audio or video resources, YouTube and Dailymotion video
 * RESTful APIs to get if a resource is video or audio     
 
-Up coming features:
+Get captions from YouTube and Dailymotion
+* Given the YouTube and Dailymotion URL, we will automatically download the English subtitle for you in srt format
+* We can convert the srt format into json, so that you can easily visualize it on the client side.
 
-* Get caption from youtube
-* Get technology description of the multimedia resources, such as framerate, bitrate, etc.
-* Automatic returning the title and description for YouTube video
-* And other secret functions :=)
+Media Fragment and Linked Data
+* Extracting named entities from srt timed-text file using different extraction tools and hamonized by [NERD] [http://nerd.eurecom.fr]
+* Align named entities with media fragments and publish it as a RDF model in ttl format.
 
 Server Setup
 ----------
@@ -58,7 +59,7 @@ Copyright
 ---------------------
 This application is protected under Modified BSD License     
 
-Copyright 2012 University of Southampton.
+Copyright 2013 University of Southampton.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
