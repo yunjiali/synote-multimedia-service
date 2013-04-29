@@ -22,7 +22,8 @@
     "xtend": "~1.0.3",
     "node-uuid":">=1.4.0",
     "needle":">=0.4.8",
-    "async":">=0.2.7"
+    "async":">=0.2.7",
+    "mocha":">=1.9.0"
   },
   "author": {
     "name": "Yunjia Li",
@@ -37,7 +38,7 @@
     "url": "git://github.com/yunjiali/synote-multimedia-service.git"
   },
   "engines": {
-    "node": ">=0.6.16"
+    "node": ">=0.10.3"
   },
   "main": "synote-multimedia-service.js"
 }

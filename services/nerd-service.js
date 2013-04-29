@@ -17,7 +17,6 @@ var exec = require('child_process').exec
 
 exports.nerdifySRT = function(subtitleurl, callback)
 {
-	log.debug("apikey:"+API_KEY);
 	var protocol = http;
 	if(subtitleurl.toLowerCase().indexOf("https") === 0)
 	{

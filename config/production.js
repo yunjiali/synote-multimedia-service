@@ -9,7 +9,10 @@ module.exports= {
 	    },
 	    log:{
 	    	level:"debug",
-	    	type:"stream"
+	    	type:"rotating-file",
+	    	path:'./logs/bunyan.log',
+	    	period:'1d',
+	    	count: 256
 	    },
 	    node_static:{
 	    	root:"./static",
