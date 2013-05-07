@@ -1,6 +1,6 @@
 {
   "name": "synote-multimedia-service",
-  "version": "0.3",
+  "version": "0.3.0",
   "scripts":{
   	"start":"node synote-multimedia-service.js"
   },
