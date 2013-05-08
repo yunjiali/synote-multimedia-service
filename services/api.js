@@ -403,8 +403,12 @@ function nerdifySRT(req,res,next)
 		fmt = "json"
 	
 	nerdService.nerdifySRT(subtitleurl, function(err,srt, jdata){
+		
 		if(err != null)
-			return next(err);
+		{
+			res.send(500, "Error code"+err.code+":"+err.message);
+			return next();
+		}
 		if(fmt == "json")
 			return res.send(jdata);
 		else if(fmt == "ttl")
@@ -424,8 +428,11 @@ function nerdifySRT(req,res,next)
 			
 			nerdService.generateRDF(srt, jdata, nm, videourl, function(errttl, ttl){
 				if(errttl != null)
-					return next(errttl);
-				res.send(ttl);
+				{
+					res.send(500, errttl);
+					return res.next();
+				}
+				return res.send(ttl);
 			});		
 		}
 	});

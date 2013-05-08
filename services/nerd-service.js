@@ -58,7 +58,6 @@ exports.nerdifySRT = function(subtitleurl, callback)
 			//TODO: CustomiseException
 			if(err != null)
 				return callback(err,result);
-			
 			nerd.annotate(
 				'http://nerd.eurecom.fr/api/', 
 	            API_KEY, 
