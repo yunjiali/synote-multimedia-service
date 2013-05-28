@@ -155,6 +155,7 @@ function generateThumbnail(req, res, next) {
 	     string
 	   ],
 	   "category": {
+	   		id: string, //optional
 	        label:string,
 	        uri:string
 	   } (for both yt and dm)
@@ -162,6 +163,8 @@ function generateThumbnail(req, res, next) {
 	   "language": string, (only dm)
 	   "creationDate": datetime,
 	   "publicationDate": datetime,
+	   "isVideo":bool, //optional
+	   "thumbnail":url //optional
 	 },
 	 "statistics": {
 	   "views": unsigned long,
