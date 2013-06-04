@@ -90,6 +90,7 @@ exports.getUploadHTML = function(nexturl)
 	var html = "<!DOCTYPE html>\
 	<html> \
 		<head> \
+			<base target=\"_parent\" /> \
 			<meta http-equiv='Content-type' content='text/html; charset=utf-8'> \
 			<title>Multimedia Uploader</title> \
 			<script src='/js/random.token.js'></script> \

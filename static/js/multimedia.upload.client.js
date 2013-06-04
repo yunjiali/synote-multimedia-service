@@ -74,8 +74,11 @@ function UpdateBar(percent){
 socket.on('Done', function (data){
 	//show url of the video and a button to copy to clipboard
 	var Content = "<p>File Successfully Uploaded!</p>";
+	Content+="<p>The url of the multimedia file is:</p>";
+	Content+="<input type=\"text\" id=\"videourl_input\" value=\""+data.videourl+"\"/><br/>";
 	Content+="<br/><a class='button' href=\""+nexturl+"?url="+encodeURIComponent(data.videourl)+"\" title='next'>Next</a>";
 	document.getElementById('UploadBox').innerHTML = Content;
+	document.getElementById('videourl_input').select();
 });
 
 function Refresh(){
