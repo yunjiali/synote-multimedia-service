@@ -5,8 +5,9 @@ var log = Common.log,
 	config = Common.config,
 	server = Common.server,
 	node_static = Common.node_static;
-
 //var thumbnail_root = config.node_static.root+;
+
+var vidstreamer = require('vid-streamer');
 
 /* Init services
  * We use nameService for the instance of each service 
@@ -27,6 +28,14 @@ var file = new(node_static.Server)(config.node_static.root, {
 log.info("Init apis...");
 api.init();
 
+/*enable video streaming server*/
+if(config.vidstreamer.enabled === true)
+	server.get(/^\/multimedia\/.*/,vidstreamer.settings(config.vidstreamer.settings));
+else
+	server.get(/^\/multimedia\/.*/,function(req,res,next){
+		return res.send(403, "Permission Denied");
+	});
+
 /*serve static files, we need to put it as the last one*/
 server.get(/^\/thumbnail\/.*/, function(req, res, next) {
 	//file.serve(req, res, next);
@@ -34,6 +43,26 @@ server.get(/^\/thumbnail\/.*/, function(req, res, next) {
 		if(err != null)
 		{
 			return file.serveFile("default.jpg",err.status,{},req,res);
+		}
+	});
+});
+
+server.get(/^\/js\/.*/, function(req, res, next) {
+	//file.serve(req, res, next);
+	file.serve(req,res,function(err,result){
+		if(err != null)
+		{
+			return file.serveFile("error.html",err.status,{},req,res);
+		}
+	});
+});
+
+server.get(/^\/css\/.*/, function(req, res, next) {
+	//file.serve(req, res, next);
+	file.serve(req,res,function(err,result){
+		if(err != null)
+		{
+			return file.serveFile("error.html",err.status,{},req,res);
 		}
 	});
 });

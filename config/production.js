@@ -34,6 +34,7 @@ module.exports= {
 			getSubtitleList:true,
 			getSubtitleSRT:true,
 			nerdifySRT:true,
+			multimediaUpload:true,
 			metadataShort: false
 	    },
 	    ffmpeg:{
@@ -42,6 +43,17 @@ module.exports= {
 	    vlc:{
 	    	path:'C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe', //don't forget to change it if it's in Linux
 	    	scene_ratio:999999 //we just want one picture, so we set it high
+	    },
+	    vidstreamer:{
+	    	enabled:true,
+	    	settings:{
+		    	"mode": "development",
+			    "forceDownload": false,
+			    "random": false,
+			    "rootFolder": "./static/",
+			    "rootPath": "",
+			    "server": "VidStreamer.js/0.1.4"
+			}
 	    }
 	}
 }

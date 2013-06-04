@@ -9,7 +9,8 @@ var log = Common.log,
 	config = Common.config,
 	server = Common.server,
 	node_static = Common.node_static,
-	utils = Common.utils;
+	utils = Common.utils,
+	fs = Common.fs;
 	
 var http = require('http');
 
@@ -18,13 +19,14 @@ var youtubeService = require('../services/youtube-service.js');
 var dailymotionService = require ('../services/dailymotion-service.js');
 var subtitleService = require('../services/subtitle-service.js');
 var nerdService = require('../services/nerd-service.js');
+var multimediauploadService = require('../services/multimediaupload-service.js');
 
 
 /* params:
  * server: the restify serve instance
  * */
 exports.init = function()
-{
+{	
 	server.use(restify.queryParser());
 	if(config.api.generateThumbnail == true)
 		server.get('/api/generateThumbnail', generateThumbnail);
@@ -40,7 +42,15 @@ exports.init = function()
 		server.get('/api/getSubtitleSRT',getSubtitleSRT);
 	if(config.api.nerdifySRT == true)
 		server.get('/api/nerdifySRT',nerdifySRT);
-	//server.head('/api/:name', respond);
+		
+	if(config.api.multimediaUpload == true)
+	{
+		server.get('/api/multimediaUpload', multimediaUpload);
+		multimediauploadService.initSocketIO();
+			//enable socket.io
+	}
+		//server.head('/api/:name', respond);
+		
 }
 /*
  * Generate thumbnail picture for a video
@@ -439,6 +449,24 @@ function nerdifySRT(req,res,next)
 			});		
 		}
 	});
+}
+
+/**
+ * Multimedia File upload
+ */
+function multimediaUpload(req,res,next)
+{
+	var nexturl = req.query.nexturl;
+	if(nexturl === undefined)
+		nexturl = "#";
+	
+	var body = multimediauploadService.getUploadHTML(nexturl);
+	res.writeHead(200, {
+	  	'Content-Length': Buffer.byteLength(body),
+	  	'Content-Type': 'text/html'
+	});
+	res.write(body);
+	return res.end();
 }
 
 /*
