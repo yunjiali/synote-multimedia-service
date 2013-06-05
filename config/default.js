@@ -4,6 +4,7 @@ module.exports= {
 		http: {
 			protocol:"http",
 	    	hostname:"localhost",
+	    	IP:'127.0.0.1',
 	    	port:8888
 	    },
 	    log:{

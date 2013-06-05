@@ -5,7 +5,8 @@ module.exports= {
 		http: {
 			protocol:"http",
 	    	hostname:"lslvm-yl2.ecs.soton.ac.uk",
-	    	port:8000
+	    	IP:'152.78.189.68',
+	    	port:80
 	    },
 	    log:{
 	    	level:"debug",

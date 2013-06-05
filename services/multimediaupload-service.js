@@ -61,7 +61,7 @@ exports.initSocketIO = function(callback)
 								//exec("ffmpeg -i Video/" + Name  + " -ss 01:30 -r 1 -an -vframes 1 -f mjpeg Video/" + Name  + ".jpg", function(err){
 								//	socket.emit('Done', {'Image' : 'Video/' + Name + '.jpg'});
 								//});
-								socket.emit('Done',{videourl:config.http.protocol+"://"+config.http.hostname+":"+config.http.port+"/multimedia/"+Name});
+								socket.emit('Done',{videourl:config.http.protocol+"://"+config.http.IP+":"+config.http.port+"/multimedia/"+Name});
 							});
 						});
 					});
@@ -98,7 +98,7 @@ exports.getUploadHTML = function(nexturl)
 			<script src='/js/multimedia.upload.client.js'></script> \
 			<link rel='stylesheet' type='text/css' href='/css/upload.css' media='screen' /> \
 		</head> \
-		<body onload='io.connect(\""+config.http.protocol+"://"+config.http.hostname+":"+config.http.port+"\"); setNextURL(\""+nexturl+"\")'> \
+		<body onload='io.connect(\""+config.http.protocol+"://"+config.http.IP+":"+config.http.port+"\"); setNextURL(\""+nexturl+"\")'> \
 			<div id='UploadBox'> \
 				<h2>Multimedia Uploader</h2> \
 				<span id='UploadArea'> \

@@ -123,16 +123,12 @@ function getMetadata(videourl, callback)
  */
 function getDuration(videourl,callback)
 {
-	var metaObj = new Metalib(videourl);
-	metaObj.get(function(err,metadata){
+	getMetadata(videourl,function(err,formalObj){
 		if(err != null)
 			return callback(err,null);
-		
-		if(metadata.durationsec === undefined)
-			return callback(new restify.InvalidArgumentError("Cannot get the duration of the resource"),null); //TODO: CustomiseException
-		
-		var duration = parseInt(metadata.durationsec);
-		log.debug("duration:"+duration);
+		if(formalObj.metadata.duration === undefined)
+			return callback(new restify.RestError("Cannot get the duration of the resource"),null);
+		var duration = parseInt(formalObj.metadata.duration);
 		return callback(err,{duration:duration*1000});
 	})
 }
