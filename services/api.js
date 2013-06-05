@@ -9,20 +9,24 @@ var log = Common.log,
 	config = Common.config,
 	server = Common.server,
 	node_static = Common.node_static,
-	utils = Common.utils;
+	utils = Common.utils,
+	fs = Common.fs;
 	
 var http = require('http');
 
 var ffmpegService = require('../services/ffmpeg-service.js');
 var youtubeService = require('../services/youtube-service.js');
 var dailymotionService = require ('../services/dailymotion-service.js');
-var lime13 = require('../services/lime13.js');
+var subtitleService = require('../services/subtitle-service.js');
+var nerdService = require('../services/nerd-service.js');
+var multimediauploadService = require('../services/multimediaupload-service.js');
+
 
 /* params:
  * server: the restify serve instance
  * */
 exports.init = function()
-{
+{	
 	server.use(restify.queryParser());
 	if(config.api.generateThumbnail == true)
 		server.get('/api/generateThumbnail', generateThumbnail);
@@ -34,13 +38,19 @@ exports.init = function()
 		server.get('/api/isVideo',isVideo);
 	if(config.api.getSubtitleList == true)
 		server.get('/api/getSubtitleList',getSubtitleList);
-	//server.head('/api/:name', respond);
-	
-	if(config.api.lime13 == true)
+	if(config.api.getSubtitleSRT == true)
+		server.get('/api/getSubtitleSRT',getSubtitleSRT);
+	if(config.api.nerdifySRT == true)
+		server.get('/api/nerdifySRT',nerdifySRT);
+		
+	if(config.api.multimediaUpload == true)
 	{
-		server.get('/api/lime13/generateAll', generateAll);
-		server.get('/api/lime13/mfStat', mfStat);
+		server.get('/api/multimediaUpload', multimediaUpload);
+		multimediauploadService.initSocketIO();
+			//enable socket.io
 	}
+		//server.head('/api/:name', respond);
+		
 }
 /*
  * Generate thumbnail picture for a video
@@ -155,6 +165,7 @@ function generateThumbnail(req, res, next) {
 	     string
 	   ],
 	   "category": {
+	   		id: string, //optional
 	        label:string,
 	        uri:string
 	   } (for both yt and dm)
@@ -162,6 +173,8 @@ function generateThumbnail(req, res, next) {
 	   "language": string, (only dm)
 	   "creationDate": datetime,
 	   "publicationDate": datetime,
+	   "isVideo":bool, //optional
+	   "thumbnail":url //optional
 	 },
 	 "statistics": {
 	   "views": unsigned long,
@@ -334,26 +347,128 @@ function getSubtitleList(req,res,next)
 	}
 }
 
-function generateAll(req,res,next)
+/*
+ * subtitleurl: the url of the subtitle
+ * fmt: the data structure of the return json, default is "json"
+ * 
+ */
+
+function getSubtitleSRT(req,res,next)
 {
-	lime13.generateAll(function(err){
+	var subtitleurlEncoded = req.query.subtitleurl;
+	
+	log.debug("getSubtitleSRT");
+	if(subtitleurlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("subtitleurl is missing!"));
+	}
+	
+	var subtitleurl = decodeURIComponent(subtitleurlEncoded);
+	
+	if(utils.isValidURL(subtitleurl))
+	{
+		return next(new restify.InvalidArgumentError("subtitleurl parameter is not a valid url!"));
+	}
+
+	var fmt = req.query.fmt;
+	if(fmt === undefined)
+		fmt = "json"
+	
+	subtitleService.getSubtitleSRT(subtitleurl,fmt, function(err,data){
 		if(err != null)
 			return next(err);
-		return res.send("success!");
+		return res.send(data);
 	});
 }
 
 /*
- * Generate mfStat data
+ * NERDify SRT file through nerd
+ * subtitleurl: the url of the subtitle
+ * fmt: the data format of the return json, default is "json", could also be "ttl"
+ * calback(err,data)
+ *
+ * if fmt="ttl", we will use RDFizator to generate the RDF serilsation. In this case, we need two more parameters:
+ * nm: the encoded namespace URI for the annotations
+ * videourl: the encoded URI of the video
+ *
+ * return: the json or ttl data
  */
-function mfStat(req,res,next)
+
+function nerdifySRT(req,res,next)
 {
-	lime13.mfStat(function(err){
+	var subtitleurlEncoded = req.query.subtitleurl;
+	
+	log.debug("nerdifySRT");
+	if(subtitleurlEncoded === undefined)
+	{
+		return next(new restify.MissingParameterError("subtitleurl is missing!"));
+	}
+	
+	var subtitleurl = decodeURIComponent(subtitleurlEncoded);
+	
+	if(utils.isValidURL(subtitleurl))
+	{
+		return next(new restify.InvalidArgumentError("subtitleurl parameter is not a valid url!"));
+	}
+
+	var fmt = req.query.fmt;
+	if(fmt === undefined)
+		fmt = "json"
+	
+	nerdService.nerdifySRT(subtitleurl, function(err,srt, jdata){
+		
 		if(err != null)
-			return next(err);
-		return res.send("success!");
+		{
+			res.send(500, "Error code"+err.code+":"+err.message);
+			return next();
+		}
+		if(fmt == "json")
+			return res.send(jdata);
+		else if(fmt == "ttl")
+		{
+			var nm = req.query.nm;
+	
+			var videourl = decodeURIComponent(req.query.videourl);
+			
+			if(nm === undefined)
+			{
+				return next(new restify.InvalidArgumentError("nm parameter is missing!"));
+			}
+			else if(videourl === undefined)
+			{
+				return next(new restify.InvalidArgumentError("videourl parameter is missing!"));
+			}	
+			
+			nerdService.generateRDF(srt, jdata, nm, videourl, function(errttl, ttl){
+				if(errttl != null)
+				{
+					res.send(500, errttl);
+					return res.next();
+				}
+				return res.send(ttl);
+			});		
+		}
 	});
 }
+
+/**
+ * Multimedia File upload
+ */
+function multimediaUpload(req,res,next)
+{
+	var nexturl = req.query.nexturl;
+	if(nexturl === undefined)
+		nexturl = "#";
+	
+	var body = multimediauploadService.getUploadHTML(nexturl);
+	res.writeHead(200, {
+	  	'Content-Length': Buffer.byteLength(body),
+	  	'Content-Type': 'text/html'
+	});
+	res.write(body);
+	return res.end();
+}
+
 /*
  * s: start time
  * e: end time
