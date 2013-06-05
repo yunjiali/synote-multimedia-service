@@ -9,7 +9,8 @@ var log = Common.log,
 	config = Common.config,
 	server = Common.server,
 	node_static = Common.node_static,
-	utils = Common.utils;
+	utils = Common.utils,
+	fs = Common.fs;
 	
 var http = require('http');
 
@@ -18,13 +19,14 @@ var youtubeService = require('../services/youtube-service.js');
 var dailymotionService = require ('../services/dailymotion-service.js');
 var subtitleService = require('../services/subtitle-service.js');
 var nerdService = require('../services/nerd-service.js');
+var multimediauploadService = require('../services/multimediaupload-service.js');
 
 
 /* params:
  * server: the restify serve instance
  * */
 exports.init = function()
-{
+{	
 	server.use(restify.queryParser());
 	if(config.api.generateThumbnail == true)
 		server.get('/api/generateThumbnail', generateThumbnail);
@@ -40,7 +42,15 @@ exports.init = function()
 		server.get('/api/getSubtitleSRT',getSubtitleSRT);
 	if(config.api.nerdifySRT == true)
 		server.get('/api/nerdifySRT',nerdifySRT);
-	//server.head('/api/:name', respond);
+		
+	if(config.api.multimediaUpload == true)
+	{
+		server.get('/api/multimediaUpload', multimediaUpload);
+		multimediauploadService.initSocketIO();
+			//enable socket.io
+	}
+		//server.head('/api/:name', respond);
+		
 }
 /*
  * Generate thumbnail picture for a video
@@ -155,6 +165,7 @@ function generateThumbnail(req, res, next) {
 	     string
 	   ],
 	   "category": {
+	   		id: string, //optional
 	        label:string,
 	        uri:string
 	   } (for both yt and dm)
@@ -162,6 +173,8 @@ function generateThumbnail(req, res, next) {
 	   "language": string, (only dm)
 	   "creationDate": datetime,
 	   "publicationDate": datetime,
+	   "isVideo":bool, //optional
+	   "thumbnail":url //optional
 	 },
 	 "statistics": {
 	   "views": unsigned long,
@@ -403,8 +416,12 @@ function nerdifySRT(req,res,next)
 		fmt = "json"
 	
 	nerdService.nerdifySRT(subtitleurl, function(err,srt, jdata){
+		
 		if(err != null)
-			return next(err);
+		{
+			res.send(500, "Error code"+err.code+":"+err.message);
+			return next();
+		}
 		if(fmt == "json")
 			return res.send(jdata);
 		else if(fmt == "ttl")
@@ -424,11 +441,32 @@ function nerdifySRT(req,res,next)
 			
 			nerdService.generateRDF(srt, jdata, nm, videourl, function(errttl, ttl){
 				if(errttl != null)
-					return next(errttl);
-				res.send(ttl);
+				{
+					res.send(500, errttl);
+					return res.next();
+				}
+				return res.send(ttl);
 			});		
 		}
 	});
+}
+
+/**
+ * Multimedia File upload
+ */
+function multimediaUpload(req,res,next)
+{
+	var nexturl = req.query.nexturl;
+	if(nexturl === undefined)
+		nexturl = "#";
+	
+	var body = multimediauploadService.getUploadHTML(nexturl);
+	res.writeHead(200, {
+	  	'Content-Length': Buffer.byteLength(body),
+	  	'Content-Type': 'text/html'
+	});
+	res.write(body);
+	return res.end();
 }
 
 /*

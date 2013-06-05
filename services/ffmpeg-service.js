@@ -31,7 +31,8 @@ function generateThumbnail(id,videourl,time,callback){
 	//convert time to seconds
 	
 	//TODO:Get the duration and set it a random position within the duration
-	getMetadata(videourl,function(err,metadata){
+	var metaObj = new Metalib(videourl);
+	metaObj.get(function(err,metadata){
 		if(err != null)
 			return callback(err,null);
 		
@@ -81,14 +82,37 @@ function generateThumbnail(id,videourl,time,callback){
 function getMetadata(videourl, callback)
 {
 	var metaObj = new Metalib(videourl);
-	metaObj.get(function(metadata,err) {
-		log.debug(require('util').inspect(metadata, false, null));
+	metaObj.get(function(metadata_old,err) {
+		log.debug(require('util').inspect(metadata_old, false, null));
 		//TODO: how can I make sure ffmpeg can get the metadata?
-		if((metadata.video.resolution.w === 0 && metadata.video.resolution.h === 0) || metadata.video.container == "mp3")
-			metadata.isVideo = false;
+		if((metadata_old.video.resolution.w === 0 && metadata_old.video.resolution.h === 0) || metadata_old.video.container == "mp3")
+			metadata_old.isVideo = false;
 		else
-			metadata.isVideo = true;
-		callback(null,metadata);
+			metadata_old.isVideo = true;
+		
+		//transform to new metadata standard
+		var newObj = {};
+		newObj.id = null;
+		newObj.metadata = {};
+		newObj.metadata.title = metadata_old.title;
+		newObj.metadata.description = "";
+		newObj.metadata.duration = metadata_old.durationsec;
+		newObj.metadata.language = null;
+		newObj.metadata.creationDate = metadata_old.title.date ;
+		newObj.metadata.publicationDate = metadata_old.title.date;
+		newObj.metadata.isVideo = metadata_old.isVideo;
+		newObj.metadata.thumbnail = null ;
+		newObj.metadata.category = {};
+		newObj.metadata.category.id = null;
+		newObj.metadata.category.label = null;
+		newObj.metadata.category.uri=null;
+		newObj.statistics = {};
+		newObj.statistics.views = null;
+		newObj.statistics.comments = null;
+		newObj.statistics.favorites = null;
+		newObj.statistics.ratings = null;
+		
+		callback(null,newObj);
 	});
 }
 
@@ -99,7 +123,8 @@ function getMetadata(videourl, callback)
  */
 function getDuration(videourl,callback)
 {
-	getMetadata(videourl,function(err,metadata){
+	var metaObj = new Metalib(videourl);
+	metaObj.get(function(err,metadata){
 		if(err != null)
 			return callback(err,null);
 		
@@ -125,7 +150,8 @@ function getDurationJSON(metadata)
  */
 function isVideo(videourl, callback)
 {
-	getMetadata(videourl,function(err,metadata){
+	var metaObj = new Metalib(videourl);
+	metaObj.get(function(err,metadata){
 		if(err != null)
 			return callback(err,null);
 		
