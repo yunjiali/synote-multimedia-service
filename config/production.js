@@ -41,6 +41,11 @@ module.exports= {
 	    ffmpeg:{
 	    
 	    },
+	    multimedia:
+	    {
+	    	hostname:true, //if false, we will use IP instead of hostname as the url of the multimedia 
+	    	port: true, //include port number in the multimedia url. If it is deployed in production environment, it could be served directly from 80 port
+	    },
 	    vlc:{
 	    	path:'C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe', //don't forget to change it if it's in Linux
 	    	scene_ratio:999999 //we just want one picture, so we set it high
