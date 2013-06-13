@@ -214,12 +214,12 @@ function getCategory(categoryId,callback)
  * Get the duration from youtube api
  */
 exports.getDuration = function(videourl, callback){
-	getMetadata(videourl,function(err,metadata){
+	getMetadata(videourl,function(err,formalObj){
 		if(err != null)
 			return callback(err,null);
-		if(metadata.entry[ "media$group" ][ "yt$duration" ].seconds === undefined)
+		if(formalObj.metadata.duration === undefined)
 			return callback(new restify.RestError("Cannot get the duration of the resource"),null);
-		var duration = parseInt(metadata.entry[ "media$group" ][ "yt$duration" ].seconds);
+		var duration = parseInt(formalObj.metadata.duration);
 		return callback(err,{duration:duration*1000});
 	})
 //data.entry[ "media$group" ][ "yt$duration" ].seconds	
