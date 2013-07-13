@@ -7,6 +7,7 @@ var log = Common.log,
 var ffmpeg = require('fluent-ffmpeg');
 var Metalib = require('fluent-ffmpeg').Metadata;
 
+var thumbnailService = require('../services/thumbnail-service.js');
 //the root directory of thumbnail on the disk 
 var thumbnail_root = config.node_static.root+config.thumbnail.root_dir;
 log.debug(thumbnail_root);
@@ -27,51 +28,40 @@ exports.isVideo = isVideo;
  * 
  * There is no callback function in this method, as the waiting for thumbnail generation may take a long time
  */
-function generateThumbnail(id,videourl,time,callback){
+function generateThumbnail(id,videourl,start,end,callback){
 	//convert time to seconds
 	
 	//TODO:Get the duration and set it a random position within the duration
-	var metaObj = new Metalib(videourl);
-	metaObj.get(function(err,metadata){
+	getMetadata(videourl, function(err,metadata){
 		if(err != null)
-			return callback(err,null);
+			return callback(err);
 		
-		var isVideo = isVideoJSON(metadata);
+		var isVideo = metadata.metadata.isVideo;
 		
 		if(isVideo === false)
 		{
 			var err = new restify.InvalidArgumentError("The requesting resource is not a video!"); //TODO: CustomiseException
-			return callback(err,null);
+			return callback(err);
 		}
 		
-		var duration = getDurationJSON(metadata);
+		var duration = metadata.metadata.duration;
+		var count = thumbnailService.getThumbnailCount(duration);
 		
-		if(time === -1)
-		{
-			time = utils.getRandomNoBetween(0,duration,undefined);
-		}
-		else if(time > duration) //there are blank images in between frames
-		{
-			time = duration*0.9;
-		}
-		var t = ""+(time-time%1000) / 1000;
 		var thumbnail_folder = thumbnail_root+'/'+id; // no '/' here!
-		var thumbnail_file = 'tn_'+t+'s.jpg'; 
 		var proc = new ffmpeg({ source: videourl})
 			.withSize(thumbnail_size)
 			.takeScreenshots({
-		      count: 1,
-		      timemarks: [ t ]
+		      count: count,
+		      filename: '%s'
 		    }, thumbnail_folder, function(err,filenames) {
-		    	log.debug("filenames:"+filenames);
-		    	log.info('screenshots were saved as '+ thumbnail_file );
+		    	log.debug("Save "+count+" thumbnails.");
 		    	if(err != null)
 		    	{
-		    		return callback(err,null);
+		    		return callback(err);
 		    	}
 		});
 		
-		return callback(null,thumbnail_file);
+		return callback(null);
 	});
 };
 
@@ -132,13 +122,6 @@ function getDuration(videourl,callback)
 		return callback(err,{duration:duration*1000});
 	})
 }
-/*
- * Not event-based function for getDuration
- */
-function getDurationJSON(metadata)
-{
-	return parseInt(metadata.durationsec)*1000;
-}
 
 /*
  * Judge if the requested resource is a video
@@ -156,14 +139,6 @@ function isVideo(videourl, callback)
 		else
 			return callback(null,false);
 	});
-}
-
-/*
- * Not event-based function for isVideo
- */
-function isVideoJSON(metadata)
-{
-	return metadata.isVideo;
 }
 
 /*

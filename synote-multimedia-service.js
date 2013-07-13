@@ -20,6 +20,7 @@ var	api = require('./services/api.js');
 
 /*start the restify server and node-static*/
 log.info("Start server...");
+
 var file = new(node_static.Server)(config.node_static.root, {
 	cache: Common.config.node_static.cache,
 });
@@ -74,5 +75,13 @@ server.get(/^\/.*/, function(req, res, next) {
 server.listen(config.http.port, config.http.hostname, function() {
 	log.info('%s listening at %s', server.name, server.url);
 });
+
+exports.listen = function () {
+  	server.listen.apply(server, arguments);
+};
+
+exports.close = function (callback) {
+  	server.close(callback);
+};
 
 

@@ -22,7 +22,26 @@ module.exports= {
 	    thumbnail:{
 	    	root_dir:"/thumbnail",
 	    	height:90,
-	    	width:120
+	    	width:120,
+	    	invervals:[ //duration: the length of the video, interval: the time interval to take a thumbnail
+	    		{
+	    			duration: 60,
+	    			interval: 1
+	    		},
+	    		{
+	    			duration: 240,
+	    			interval: 2
+	    		},
+	    		{
+	    			duration: 1200,
+	    			interval: 4
+	    		},
+	    		{
+	    			duration: 3600,
+	    			interval: 30
+	    		}
+	    	],
+	    	max: 200 //maxium number of thumbnails
 	    },
 	    db:{
 	    	

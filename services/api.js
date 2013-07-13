@@ -53,8 +53,8 @@ exports.init = function()
 		
 }
 /*
- * Generate thumbnail picture for a video
- * params: id, videourl, start, end
+ * Generate a serials of thumbnail pictures for a video, success response HTTP 200 or error messages will be sent back
+ * params: id, videourl, start (the start time to generate picture), end (the end time to generate picture)
  * 
  */
 function generateThumbnail(req, res, next) {
@@ -75,76 +75,83 @@ function generateThumbnail(req, res, next) {
 	}
 	
 	//get the thumbnail picture position
-	var time;
+	var start = req.query.start;
+	var end=req.query.end;
 	
-	if(req.query.start === undefined && req.query.end === undefined)
-	{
-		time = -1;
-		//TODO: if it's youtube video, directly read the thumbnail using youtube-dl
-	}
+	if(start === undefined)
+		start = -1;
 	else
 	{
-		if(req.query.start === undefined)
-		{
-			req.query.start = 0;
-		}
-		else if(req.query.end === undefined)
-		{
-			req.query.end = req.query.start;
-		}
-		
-		var start = parseTimeToInt(req.query.start);
+		start = parseTimeToInt(start);
 		if(start instanceof restify.RestError)
 		{
 			return next(start);
 		}
-		
-		var end = parseTimeToInt(req.query.end);
+	}
+	
+	if(end === undefined)
+		end = -1;
+	else
+	{
+		end = parseTimeToInt(req.query.end);
 		if(end instanceof restify.RestError)
 		{
 			return next(end);
 		}
-			
-		if(start > end)
-		{
-			end = start;
-		}
-		time = parseInt((start+end)/2);
+	}
+		
+	if(start > end)
+	{
+		end = start;
 	}
 	
 	//for different youtube video, we need to use vlc
 	if(utils.isYouTubeURL(videourl, true))
 	{
-		youtubeService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+		youtubeService.generateThumbnail(id,videourl,start,end,function(err){
 			
 			if(err != null)
-				return next(err);
-			else if(time === -1) //a picture from youtube
-				return res.send({thumbnail_url:thumbnail_file});
+			{
+				res.send(400, err);
+				return next();
+			}
 			else
-				return res.send({thumbnail_url:server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file});		
+			{
+				res.send(200, videourl);
+				return next();
+			}
 		});
 		
 	}
 	else if(utils.isDailyMotionURL(videourl,true))
 	{
-		dailymotionService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+		dailymotionService.generateThumbnail(id,videourl,start,end,function(err){
 			
 			if(err != null)
-				return next(err);
-			else if(time === -1) //a picture from youtube
-				return res.send({thumbnail_url:thumbnail_file});
+			{
+				res.send(400, err);
+				return next();
+			}
 			else
-				return res.send({thumbnail_url:server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file});		
+			{
+				res.send(200, videourl);
+				return next();
+			}
 		});
 	}
 	else
 	{
-		ffmpegService.generateThumbnail(id,videourl,time,function(err,thumbnail_file){
+		ffmpegService.generateThumbnail(id,videourl,start,end,function(err){
 			if(err != null)
-				return next(err);
-			else	
-				return res.send({thumbnail_url:server.url+config.thumbnail.root_dir+"/"+id+"/"+thumbnail_file});		
+			{
+				res.send(400, err);
+				return next();
+			}
+			else
+			{
+				res.send(200, videourl);
+				return next();
+			}
 		});
 		
 		
@@ -168,7 +175,7 @@ function generateThumbnail(req, res, next) {
 	   		id: string, //optional
 	        label:string,
 	        uri:string
-	   } (for both yt and dm)
+	   }, (for both yt and dm)
 	   "duration": string in seconds,
 	   "language": string, (only dm)
 	   "creationDate": datetime,
