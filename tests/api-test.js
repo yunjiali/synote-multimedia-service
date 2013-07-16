@@ -42,6 +42,36 @@ if(config.api.generateThumbnail == true)
             });
 		});
 	});
+	
+	describe('API generateThumbnail YouTube',function(){
+		it("Generate thumbnail pictures for a YouTube video",function(done){
+			var videourl = "http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWkQjYHx3NY8";
+            client.get('/api/generateThumbnail?videourl='+videourl+'&id=098765431youtube', function(err, req, res, data) {
+                if (err) {
+                    should.not.exist(err);
+                }
+                else {
+                    res.statusCode.should.equal(200);
+                    done();
+                }
+            });
+		});
+	});
+	
+	describe('API generateThumbnail Dailymotion',function(){
+		it("Generate thumbnail pictures for a Dailymotion video",function(done){
+			var videourl = encodeURIComponent("http://www.dailymotion.com/video/x111zzq_snorting-souls-is-hard-to-do-the-gate_fun");
+            client.get('/api/generateThumbnail?videourl='+videourl+'&id=098765431dailymotion', function(err, req, res, data) {
+                if (err) {
+                    should.not.exist(err);
+                }
+                else {
+                    res.statusCode.should.equal(200);
+                    done();
+                }
+            });
+		});
+	});
 }
 
 if(config.api.getMetadata == true)

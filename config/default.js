@@ -15,8 +15,18 @@ module.exports= {
 	    	root:"./static",
 	    	cache:600
 	    },
+	    download:{
+	    	root:"./tmp/download", //temp path for video download
+	    	youtube:{
+	    		max_quality:17 //the --max-quality attribute for youtube-dl
+	    	},
+	    	dailymotion:{
+	    		//Nothing
+	    	}
+	    },
 	    thumbnail:{
 	    	root_dir:"/thumbnail",
+	    	thumbnail_default:"./static/default.jpg",
 	    	height:90,
 	    	width:120,
 	    	invervals:[ //duration: the length of the video, interval: the time interval to take a thumbnail

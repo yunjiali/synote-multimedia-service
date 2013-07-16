@@ -9,31 +9,25 @@ var https = require('https');
 var xml2js = require('xml2js');
 
 var vlcService = require('../services/vlc-service.js');
+var downloader = require('../services/download-service.js');
+var ffmpegService = require('../services/ffmpeg-service.js');
+
 var keys = require('../lib/keys.js').keys;
 var ytKey = keys.youtube;
 var metadataShort =config.api.metadataShort;
 
 exports.getMetadata = getMetadata;
 
-exports.generateThumbnail = function(id,videourl,time,callback){
-	if(time===-1)
-	{
-		getMetadata(videourl,function(err,metadata){
+exports.generateThumbnail = function(id,videourl,start,end,callback){
+	
+	var dl = downloader.downloadYouTubeVideo(videourl, function(err, fullfilename){
+		ffmpegService.generateThumbnail(id,fullfilename, start,end,function(err){
 			if(err != null)
-				return callback(err,null);
-			
-			if(metadata.entry[ "media$group" ][ "media$thumbnail" ][ 0 ].url === undefined)
-				return callback(new restify.RestError("Cannot get the default thumbnail picture from YouTube."),null);
-				
-			return callback(err,metadata.entry[ "media$group" ][ "media$thumbnail" ][ 0 ].url);
+				return callback(err);
+			else
+				return callback(null);
 		});
-	}
-	else
-	{
-		vlcService.generateThumbnail(id,videourl,time,function(err,file){
-			return callback(err,file)
-		});
-	}
+	});
 };
 
 function getMetadata(videourl, callback)

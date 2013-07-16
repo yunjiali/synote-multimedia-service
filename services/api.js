@@ -153,8 +153,6 @@ function generateThumbnail(req, res, next) {
 				return next();
 			}
 		});
-		
-		
 	}
 }
 

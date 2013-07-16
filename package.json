@@ -2,8 +2,8 @@
   "name": "synote-multimedia-service",
   "version": "0.3.0",
   "scripts":{
-  	"start":"node synote-multimedia-service.js"
-  	"test":"./node_modules/mocha/bin/mocha test/*.js --timeout 60000"
+  	"start":"node synote-multimedia-service.js",
+  	"test":"./node_modules/mocha/bin/mocha tests/* --timeout 60000"
   },
   "description":"Providing many multimedia services for Synote",
   "dependencies": {
@@ -26,7 +26,9 @@
     "should":">=1.2.2",
     "vid-streamer":">=0.1.4",
     "socket.io":">=0.9.14",
-    "node-uuid":">=1.4.0"
+    "node-uuid":">=1.4.0",
+    "youtube-dl":">=1.2.8",
+    "underscore":">=1.5.1"
   },
   "author": {
     "name": "Yunjia Li",

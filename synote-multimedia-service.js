@@ -5,6 +5,9 @@ var log = Common.log,
 	config = Common.config,
 	server = Common.server,
 	node_static = Common.node_static;
+	
+var _ = require('underscore');
+var fs = require('fs');
 //var thumbnail_root = config.node_static.root+;
 
 var vidstreamer = require('vid-streamer');
@@ -38,14 +41,68 @@ else
 	});
 
 /*serve static files, we need to put it as the last one*/
-server.get(/^\/thumbnail\/.*/, function(req, res, next) {
+server.get(/^\/thumbnail.*/, function(req, res, next) {
 	//file.serve(req, res, next);
-	file.serve(req,res,function(err,result){
-		if(err != null)
+	var id = req.params.id;
+	if(id === undefined)
+	{
+		file.serve(req,res,function(err,result){
+			if(err != null) //file doesn't exists, so we choose one instead
+			{	
+				return file.serveFile("default.jpg",200,{},req,res);
+			}
+		});
+	}
+	else //want a specific file
+	{
+		var start = parseInt(req.query.start);
+		var end= parseInt(req.query.end);
+		
+		if(isNaN(start) || isNaN(end)) //parameter error, serve the default file
 		{
-			return file.serveFile("default.jpg",err.status,{},req,res);
+			return file.serveFile("default.jpg",200,{},req,res);
 		}
-	});
+		
+		var time;
+		
+		if((start === undefined && end === undefined))
+			time = _.random(0,100);
+		else if(start === undefined)
+			time = end/1000;
+		else if(end === undefined)
+			time = start/1000;
+		else
+			time = (end+start)/2000;
+		
+		var thumbnail_root = config.node_static.root+config.thumbnail.root_dir;
+		var thumbnail_folder = thumbnail_root+'/'+id;
+		
+		if(!fs.existsSync(thumbnail_folder))
+			return file.serveFile("default.jpg",200,{},req,res);
+			
+		var indexfilePath = thumbnail_folder+"/index.json";
+				
+		if(!fs.existsSync(indexfilePath)) //index file doesn't exist
+		{
+			return file.serveFile("default.jpg",200,{},req,res);
+		}
+		
+		var timesArray = JSON.parse(fs.readFileSync(indexfilePath));
+		var filename = _.find(timesArray, function(num){return num>=time;});
+		if(filename === undefined)
+		{
+			filename = _.find(timeArray, function(num){return num<time;});
+		}
+		
+		if(filename === undefined)
+		{
+			return file.serveFile("default.jpg",200,{},req,res);
+		}
+		else
+		{
+			return file.serveFile(config.thumbnail.root_dir+"/"+id+"/"+filename+".jpg",200,{},req,res);
+		}	
+	}
 });
 
 server.get(/^\/js\/.*/, function(req, res, next) {

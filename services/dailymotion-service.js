@@ -8,29 +8,23 @@ var http = require('http');
 var https = require('https');
 
 var vlcService = require('../services/vlc-service.js');
+var downloader = require('../services/download-service.js');
+var ffmpegService = require('../services/ffmpeg-service.js');
 var metadataShort =config.api.metadataShort; // return short metadata or long metadata json
 
 exports.getMetadata = getMetadata;
 
-exports.generateThumbnail = function(id,videourl,time,callback){
-	if(time===-1)
-	{
-		getMetadata(videourl,function(err,formalObj){
+exports.generateThumbnail = function(id,videourl,start,end,callback){
+	
+	var dl = downloader.downloadYouTubeVideo(videourl, function(err, fullfilename){
+		ffmpegService.generateThumbnail(id,fullfilename, start,end,function(err){
 			if(err != null)
-				return callback(err,null);
+				return callback(err);
+			else
+				return callback(null);
 			
-			if(formalObj.metadata.thumbnail_medium_url === undefined)
-				return callback(new restify.RestError("Cannot get the default thumbnail picture from DailyMotion."),null);
-				
-			return callback(err,formalObj.metadata.thumbnail_medium_url);
 		});
-	}
-	else
-	{
-		vlcService.generateThumbnail(id,videourl,time,function(err,file){
-			return callback(err,file)
-		});
-	}
+	});
 };
 
 function getMetadata(videourl, callback)

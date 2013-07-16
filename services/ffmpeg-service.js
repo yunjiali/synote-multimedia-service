@@ -4,6 +4,7 @@ var log = Common.log,
 	utils = Common.utils,
 	restify = Common.restify;
 
+var fs = require('fs');
 var ffmpeg = require('fluent-ffmpeg');
 var Metalib = require('fluent-ffmpeg').Metadata;
 
@@ -20,13 +21,9 @@ exports.getDuration = getDuration;
 exports.isVideo = isVideo;
 
 /* generate thumbnail pictures using ffmpeg
- * params: id, videourl, time (in milliseconds) 
+ * params: id, videourl, time (in milliseconds), the videourl sometimes can be a filepath
  * return: the file name for thumbnail picture
  * 
- * According to the processor.js in ffmpeg, the generated thumbnail file will be at:
- * var target = Meta.escapedPath(folder + '/tn_' + offset + 's.jpg');
- * 
- * There is no callback function in this method, as the waiting for thumbnail generation may take a long time
  */
 function generateThumbnail(id,videourl,start,end,callback){
 	//convert time to seconds
@@ -48,17 +45,44 @@ function generateThumbnail(id,videourl,start,end,callback){
 		var count = thumbnailService.getThumbnailCount(duration);
 		
 		var thumbnail_folder = thumbnail_root+'/'+id; // no '/' here!
+		
+		if(fs.existsSync(thumbnail_folder))
+		{
+			var files = fs.readdirSync(thumbnail_folder);
+			if(files.length>=count) //folder exists already and has enough pictures
+			{
+				log.debug("Thumbnails have been generated before.");
+				return callback(null);
+			}
+		}
+		
 		var proc = new ffmpeg({ source: videourl})
 			.withSize(thumbnail_size)
 			.takeScreenshots({
 		      count: count,
 		      filename: '%s'
 		    }, thumbnail_folder, function(err,filenames) {
-		    	log.debug("Save "+count+" thumbnails.");
+		    	if(fs.existsSync(videourl))
+		    	{
+		    		fs.unlinkSync(videourl);
+		    	}
+		    	
 		    	if(err != null)
 		    	{
-		    		return callback(err);
+		    		log.error(err);
+					//Do nothing		    		
 		    	}
+		    	
+		    	//create index file
+		    	var timesArray = [];
+		    	for(var i=0;i<filenames.length;i++)
+		    	{
+		    		timesArray.push(parseFloat(filenames[i].replace(".jpg","")));
+		    	}
+		    	
+		    	fs.writeFileSync(thumbnail_folder+"/index.json", "["+timesArray+"]");
+		    	log.debug("Save "+count+" thumbnails.");
+		    	return;		    	
 		});
 		
 		return callback(null);
