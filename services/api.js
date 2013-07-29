@@ -201,7 +201,7 @@ function getMetadata(req,res,next)
 	
 	var videourl = decodeURIComponent(videourlEncoded);
 	
-	if(utils.isValidURL(videourl))
+	if(!utils.isValidURL(videourl))
 	{
 		return next(new restify.InvalidArgumentError("videourl parameter is not a valid url!"));
 	}
